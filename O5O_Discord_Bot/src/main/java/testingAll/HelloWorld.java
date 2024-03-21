@@ -6,6 +6,7 @@ public class HelloWorld {
 		// TODO Auto-generated method stub
 		System.out.println("Hello World!");
 		System.out.println("Esto es desde el MAC MAC MAC");
+		System.out.println("Y esto desde el windows");
 
 	}
 
