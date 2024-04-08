@@ -33,10 +33,13 @@ public class GraphicalUserInterfaceSelectServer extends JDialog {
 	private JComboBox<String> comboBox_servidor = new JComboBox<String>();
 	private Map<String, String> id_servers;
 	private Optional<Server> servidor_seleccionado = null;
+	private GraphicalUserInterfaceLogic logicaPadre;
 	/**
 	 * Create the dialog.
 	 */
-	public GraphicalUserInterfaceSelectServer(Set <Server> servidores) {
+	public GraphicalUserInterfaceSelectServer(Set <Server> servidores, GraphicalUserInterfaceLogic logica) {
+		setTitle("Seleccion servidor");
+		logicaPadre = logica;
 		id_servers = new HashMap<String, String>();
 		fillComboBox(servidores);
 		setup();
@@ -74,14 +77,14 @@ public class GraphicalUserInterfaceSelectServer extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(comboBox_servidor != null)
-							setServidor_seleccionado(O5O.getApi().getServerById(id_servers.get(comboBox_servidor.getSelectedItem())));
+							setServidor_seleccionado(logicaPadre.getBotApi().getServerById(id_servers.get(comboBox_servidor.getSelectedItem())));
 							setVisible(false);
 					}
 				});

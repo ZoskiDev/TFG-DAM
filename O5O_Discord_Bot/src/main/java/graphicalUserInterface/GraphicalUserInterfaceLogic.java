@@ -1,5 +1,7 @@
 package graphicalUserInterface;
 
+import org.javacord.api.DiscordApi;
+
 import botlogic.O5O;
 
 /**
@@ -13,8 +15,8 @@ public class GraphicalUserInterfaceLogic {
 	private O5O bot = new O5O();
 	
 	public GraphicalUserInterfaceLogic() {
-		select_server = new GraphicalUserInterfaceSelectServer(O5O.getApi().getServers());
-		send_messages = new GraphicalUserInterfaceSendMessages();
+		select_server = new GraphicalUserInterfaceSelectServer(bot.getApi().getServers(), this);
+		send_messages = new GraphicalUserInterfaceSendMessages(this);
 	}
 	/**
 	 * Metodo para comprobar si el bot ha inicializado correctamente
@@ -22,9 +24,13 @@ public class GraphicalUserInterfaceLogic {
 	 * @return false si no se ha inicializado correctamente
 	 * */
 	public boolean isBotReady() {
-		if(O5O.getApi() != null)
+		if(bot.getApi() != null)
 			return true;
 		return false;
+	}
+	
+	public  DiscordApi getBotApi() {
+		return bot.getApi();
 	}
 	public void setActiveServer() {
 		try{
@@ -36,11 +42,7 @@ public class GraphicalUserInterfaceLogic {
 				bot.setServidor_seleccionado(null);
 		}
 	}
-	public boolean isServerActive() {
-		if (bot.getServidor_seleccionado() != null)
-				return true;
-		return false;
-	}
+	
 	public String getActiveServerName() {
 		String serverName = "";
 		try {
@@ -51,8 +53,19 @@ public class GraphicalUserInterfaceLogic {
 		}
 		return serverName;
 	}
-	public void sendMessages() {
-		send_messages.setVisible(true);	
-		send_messages.fillJComboBox(bot.getServidor_seleccionado());
+	
+	public boolean isServerActive() {
+		if (bot.getServidor_seleccionado() != null)
+				return true;
+		return false;
+	}
+	
+	public void startMessagesGUI() {
+			send_messages.fillJComboBox(bot.getServidor_seleccionado());
+			send_messages.setVisible(true);
+		}
+	
+	public void sendMessageToBot(String message, String channelID) {
+		bot.sendMessage(message, channelID);
 	}
 }

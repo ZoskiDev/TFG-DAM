@@ -118,14 +118,14 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 						JOptionPane.showMessageDialog(null, "Selecciona un servidor antes para mandar un mensaje", "Error servidor", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
-					
-					
-						
+					logica.startMessagesGUI();	
 				}
 			});
 		//Fin sector listeners
 	}
 	public GraphicalUserInterfaceO5O( ) {
+		getContentPane().setBackground(Color.GRAY);
+		setBackground(Color.WHITE);
 		colorVerde = new Color(22,208,59);
 		colorRojo = new Color (211,43,13);
 		setTitle("O5O G.U.I");
