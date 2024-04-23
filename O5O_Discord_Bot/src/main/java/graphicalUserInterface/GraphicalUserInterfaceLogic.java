@@ -1,15 +1,22 @@
 package graphicalUserInterface;
 
+
+
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
 
 import botlogic.O5O;
 
 /**
  * @author Zyssk0
- * Clase encargada de representar la logica de la interfaz en el modelo vista controlador del proyecto
+ * 
+ * @info Clase encargada de representar la logica de la interfaz en el modelo vista controlador del proyecto
  * 
  * */
 public class GraphicalUserInterfaceLogic {
+	private static Logger logger = LogManager.getLogger(GraphicalUserInterfaceLogic.class);
 	private GraphicalUserInterfaceSelectServer select_server;
 	private GraphicalUserInterfaceSendMessages send_messages;
 	private O5O bot = new O5O();
@@ -24,8 +31,12 @@ public class GraphicalUserInterfaceLogic {
 	 * @return false si no se ha inicializado correctamente
 	 * */
 	public boolean isBotReady() {
-		if(bot.getApi() != null)
+		logger.info("Comprobando estado de la API de O5O...");
+		if(bot.getApi() != null) {
+			logger.info("Conexión establecida de manera exitosa");
 			return true;
+			}
+		logger.fatal("Error a la hora de establecer la conexión con el bot");
 		return false;
 	}
 	
@@ -37,7 +48,7 @@ public class GraphicalUserInterfaceLogic {
 			select_server.setVisible(true);
 			bot.setServidor_seleccionado(select_server.getServidor_seleccionado().get());  
 		}catch(Exception e) {
-			//TODO settear logins tope chulos con que no se ha seleccionado un servidor valido
+			//TODO settear logs tope chulos con que no se ha seleccionado un servidor valido
 			if(!isServerActive())
 				bot.setServidor_seleccionado(null);
 		}

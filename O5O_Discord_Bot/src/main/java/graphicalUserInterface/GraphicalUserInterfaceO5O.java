@@ -65,6 +65,9 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 			
 			JMenuItem mntm_mandar_mensaje_1 = new JMenuItem("Mandar Mensaje");
 			mn_opciones_1.add(mntm_mandar_mensaje_1);
+			
+			JMenuItem mntm_ = new JMenuItem("New menu item");
+			mn_opciones_1.add(mntm_);
 		
 		//Fin de sector de menubar
 		
