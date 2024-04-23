@@ -65,9 +65,6 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 			
 			JMenuItem mntm_mandar_mensaje_1 = new JMenuItem("Mandar Mensaje");
 			mn_opciones_1.add(mntm_mandar_mensaje_1);
-			
-			JMenuItem mntm_ = new JMenuItem("New menu item");
-			mn_opciones_1.add(mntm_);
 		
 		//Fin de sector de menubar
 		
@@ -127,18 +124,19 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 		//Fin sector listeners
 	}
 	public GraphicalUserInterfaceO5O( ) {
-		getContentPane().setBackground(Color.GRAY);
-		setBackground(Color.WHITE);
+		//Valores a variables
+		this.logica = new GraphicalUserInterfaceLogic();
 		colorVerde = new Color(22,208,59);
 		colorRojo = new Color (211,43,13);
-		setTitle("O5O G.U.I");
-		pack();
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setup();
-		setVisible(true);
-		this.logica = new GraphicalUserInterfaceLogic();
 		
+		//Apartado de la gui
+		setTitle("O5O G.U.I");
+		setup();
 		checkBotStatus();
+		pack();
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
 	}
 
 }

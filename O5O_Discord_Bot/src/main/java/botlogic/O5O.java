@@ -2,6 +2,8 @@ package botlogic;
 
 import java.util.concurrent.CancellationException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.message.MessageBuilder;
@@ -11,6 +13,7 @@ import org.javacord.api.entity.server.Server;
  * Clase creada para representar al bot de discord, encargado de llevar a cabo las ordenes de la aplicacion
  * */
 public class O5O {
+	private static Logger logger = LogManager.getLogger(O5O.class);
 	private String token = "MTIyMTQ4MzYyOTMzMTQ4MDc2Ng.Gk7Uod.JwjKrwqSQk_auy1XlFFFOoHqf-bpnKtY-7PN8c";
 
 	private  DiscordApi api;
@@ -33,8 +36,7 @@ public class O5O {
 				.setAllIntents()
 				.login().join();
 		}catch(CancellationException cancE) {
-		//TODO programar Logs para la excepcion quizas un log
-			System.out.println("Excepcion de cancelacion");
+			logger.fatal("ERROR FATAL EN LA CONEXIÓN CON LA API");
 		}
 	}
 
@@ -52,6 +54,7 @@ public class O5O {
 	
 	public void sendMessage(String toSend, String channelID) {
 		new MessageBuilder().setContent(toSend).send(api.getTextChannelById(channelID).get());
+		logger.info("mensaje correctamente enviado a canal con ID:" + channelID + " contenido: " + toSend);
 	}
 	
 }

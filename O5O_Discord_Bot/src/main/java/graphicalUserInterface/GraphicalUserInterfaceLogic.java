@@ -48,7 +48,7 @@ public class GraphicalUserInterfaceLogic {
 			select_server.setVisible(true);
 			bot.setServidor_seleccionado(select_server.getServidor_seleccionado().get());  
 		}catch(Exception e) {
-			//TODO settear logs tope chulos con que no se ha seleccionado un servidor valido
+			logger.error("Excepcion capturada en metodo: setActiveServer() " + e.toString() + " retornando valor null");
 			if(!isServerActive())
 				bot.setServidor_seleccionado(null);
 		}
@@ -59,7 +59,7 @@ public class GraphicalUserInterfaceLogic {
 		try {
 			serverName =  bot.getServidor_seleccionado().getName();
 		}catch(Exception e) {
-			//TODO settear logs
+			logger.error("Excepcion capturada en metodo: getActiveServerName() " + e.toString() + " retornando valor null");
 			return null;
 		}
 		return serverName;
