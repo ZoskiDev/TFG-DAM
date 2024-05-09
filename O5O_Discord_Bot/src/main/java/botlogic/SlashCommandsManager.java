@@ -2,13 +2,16 @@ package botlogic;
 
 import java.time.Duration;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.entity.channel.TextChannel;
+import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.entity.message.MessageFlag;
 import org.javacord.api.entity.message.MessageSet;
+import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
 import org.javacord.api.interaction.SlashCommandInteraction;
@@ -89,9 +92,28 @@ public class SlashCommandsManager {
 						" en canal: " + idCanal);
 			});
 			
-			
-			
-			
+		}
+		
+		else if(command.getCommandName().equals("conseguirpfp")) {
+			User usuarioObjetivo = command.getArgumentUserValueByIndex(0).get();
+			if (usuarioObjetivo == null) {
+				System.out.println("NO HA ENCONTRADO USUARIO");
+				command.createImmediateResponder().setContent("No se ha proporcionado usuario objetivo")
+				.setFlags(MessageFlag.EPHEMERAL)
+				.respond();
+			}
+			else {
+				String toSend = command.getUser().getName() + " aqui tienes la imagen de: " + usuarioObjetivo.getName();
+				//TODO que no sea una bazofia de respond inmediato y se quede pensando hasta que tengas bien mandada la imagen
+				command.createImmediateResponder().setContent("Recibido, en breves tendras la imagen!").setFlags(MessageFlag.EPHEMERAL).respond();
+					EmbedBuilder emb = new EmbedBuilder()
+					.setTitle(toSend)
+					.setImage(usuarioObjetivo.getAvatar());
+				command.getChannel().get().sendMessage(emb);
+				logger.info("Invocado borrar bloque:" +
+						" Invocador: " + command.getUser().getName() + 
+						" Objetivo " + usuarioObjetivo.getName());
+			}
 		}
 	}
 }

@@ -29,6 +29,7 @@ public class O5O {
 	
 	public O5O() {
 		startBot();
+		startMembersListener();
 		startSlashCommands();
 	}
 	
@@ -78,11 +79,23 @@ public class O5O {
 			                                SlashCommandOption.create(SlashCommandOptionType.CHANNEL, "canal", "canal especifico que borrar los mensajes", false)		                                
 			        ))))
 				);
+		builders.add(
+				SlashCommand.with("conseguirpfp", "consigue la pfp del usuario que desees",
+						Arrays.asList(
+								SlashCommandOption.createWithOptions(SlashCommandOptionType.SUB_COMMAND, "ocio", "consigue la foto de perfil del usuario que desees",
+			                            Arrays.asList(
+			                                SlashCommandOption.create(SlashCommandOptionType.USER, "usuario", "usuario al que deseas conseguir la pfp", true)                          
+			        ))))
+				);
 		api.bulkOverwriteGlobalApplicationCommands(builders).join();
 		api.addSlashCommandCreateListener(event -> {
 			SlashCommandsManager.slashManager(event.getSlashCommandInteraction(), this.getApi());
 		}
 		);
+	}
+	public void startMembersListener() {
+		api.addServerMemberJoinListener(new UserJoinListenerManager());
+		api.addServerMemberLeaveListener(new UserLeaveListenerManager());
 	}
 	public  DiscordApi getApi() {
 			return api;
@@ -97,7 +110,9 @@ public class O5O {
 	}
 	
 	public void sendMessage(String toSend, String channelID) {
-		new MessageBuilder().setContent(toSend).send(api.getTextChannelById(channelID).get());
+		new MessageBuilder()
+			.setContent(toSend)
+			.send(api.getTextChannelById(channelID).get());
 		logger.info("mensaje correctamente enviado a canal con ID:" + channelID + " contenido: " + toSend);
 	}
 	

@@ -65,6 +65,9 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 			
 			JMenuItem mntm_mandar_mensaje_1 = new JMenuItem("Mandar Mensaje");
 			mn_opciones_1.add(mntm_mandar_mensaje_1);
+			
+			JMenuItem mntm_conseguirinvitacion = new JMenuItem("Link invitacion");
+			mn_opciones_1.add(mntm_conseguirinvitacion);
 		
 		//Fin de sector de menubar
 		
@@ -119,6 +122,11 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 						return;
 					}
 					logica.startMessagesGUI();	
+				}
+			});
+			mntm_conseguirinvitacion.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					logica.getInviteLink();
 				}
 			});
 		//Fin sector listeners

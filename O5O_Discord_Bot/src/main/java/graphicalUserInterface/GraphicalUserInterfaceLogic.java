@@ -3,6 +3,11 @@ package graphicalUserInterface;
 
 
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
@@ -78,5 +83,18 @@ public class GraphicalUserInterfaceLogic {
 	
 	public void sendMessageToBot(String message, String channelID) {
 		bot.sendMessage(message, channelID);
+	}
+	public void getInviteLink() {
+		String link = bot.getApi().createBotInvite();
+		System.out.println("link de invitacion de O5O" + link);
+		try {
+			Desktop.getDesktop().browse(new URI(link));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
