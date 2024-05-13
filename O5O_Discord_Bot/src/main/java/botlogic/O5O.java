@@ -35,14 +35,15 @@ public class O5O {
 	
 	
 	public O5O() {
-		try {
-			token = new BufferedReader(new FileReader(tokenFile)).readLine();
+		try(BufferedReader lector = new BufferedReader(new FileReader(tokenFile))){
+			token = lector.readLine();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println("No encuentro archivito");
+			logger.fatal("ERROR FATAL, NO SE ENCUENTRA ARCHIVO TOKEN.TXT PARA INICIALIZAR BOT, ABORTANDO!!!");
+			System.exit(1);
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			logger.fatal("ERROR FATAL, NO SE HA CONSEGUIDO LEER EL ARCHIVO TOKEN.TXT, ASEGURATE QUE SEA UNA UNICA LINEA CON EL TOKEN!!!");
+			System.exit(1);
 			e.printStackTrace();
 		}
 		startBot();

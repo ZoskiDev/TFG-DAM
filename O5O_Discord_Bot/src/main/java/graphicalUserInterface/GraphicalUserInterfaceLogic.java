@@ -4,6 +4,7 @@ package graphicalUserInterface;
 
 
 import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -25,11 +26,13 @@ public class GraphicalUserInterfaceLogic {
 	private static Logger logger = LogManager.getLogger(GraphicalUserInterfaceLogic.class);
 	private GraphicalUserInterfaceSelectServer select_server;
 	private GraphicalUserInterfaceSendMessages send_messages;
+	private GraphicalUserInterfaceBadWords bad_words;
 	private O5O bot = new O5O();
 	
 	public GraphicalUserInterfaceLogic() {
 		select_server = new GraphicalUserInterfaceSelectServer(bot.getApi().getServers(), this);
 		send_messages = new GraphicalUserInterfaceSendMessages(this);
+		bad_words = new GraphicalUserInterfaceBadWords(this);
 	}
 	/**
 	 * Metodo para comprobar si el bot ha inicializado correctamente
@@ -97,5 +100,19 @@ public class GraphicalUserInterfaceLogic {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public void startBadWordsGUI() {
+		String txtName = getActiveServerName() + "badWords.txt";
+		File badWordstxt = new File("badWords/" + txtName);
+		if(!badWordstxt.exists()) {
+			try {
+				badWordstxt.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		bad_words.loadBadWords(badWordstxt);
+		bad_words.setVisible(true);
 	}
 }

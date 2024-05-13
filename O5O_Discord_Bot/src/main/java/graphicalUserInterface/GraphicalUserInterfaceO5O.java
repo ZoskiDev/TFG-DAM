@@ -34,6 +34,9 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 	private JLabel						lbl_status;
 	private JLabel						lbl_server;
 	
+	private void popUpErrorServer() {
+		JOptionPane.showMessageDialog(null, "Selecciona un servidor antes", "Error servidor", JOptionPane.ERROR_MESSAGE);
+	}
 	private void checkBotStatus() {
 		if(logica.isBotReady()) {
 			lbl_status.setText(lbl_status.getText() + " ONLINE");
@@ -68,6 +71,9 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 			
 			JMenuItem mntm_conseguirinvitacion = new JMenuItem("Link invitacion");
 			mn_opciones_1.add(mntm_conseguirinvitacion);
+			
+			JMenuItem mntm_badWords = new JMenuItem("Filtro palabras");
+			mn_opciones_1.add(mntm_badWords);
 		
 		//Fin de sector de menubar
 		
@@ -118,7 +124,7 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 			mntm_mandar_mensaje_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(!logica.isServerActive()) {
-						JOptionPane.showMessageDialog(null, "Selecciona un servidor antes para mandar un mensaje", "Error servidor", JOptionPane.ERROR_MESSAGE);
+						popUpErrorServer();
 						return;
 					}
 					logica.startMessagesGUI();	
@@ -127,6 +133,15 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 			mntm_conseguirinvitacion.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					logica.getInviteLink();
+				}
+			});
+			mntm_badWords.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(!logica.isServerActive()) {
+						popUpErrorServer();
+						return;
+						}
+					logica.startBadWordsGUI();
 				}
 			});
 		//Fin sector listeners
