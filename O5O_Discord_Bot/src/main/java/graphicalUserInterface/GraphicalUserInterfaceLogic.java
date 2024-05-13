@@ -11,6 +11,7 @@ import java.net.URISyntaxException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
+import org.javacord.api.entity.permission.Permissions;
 
 import botlogic.O5O;
 
@@ -85,7 +86,7 @@ public class GraphicalUserInterfaceLogic {
 		bot.sendMessage(message, channelID);
 	}
 	public void getInviteLink() {
-		String link = bot.getApi().createBotInvite();
+		String link = bot.getApi().createBotInvite(Permissions.fromBitmask(888));
 		System.out.println("link de invitacion de O5O" + link);
 		try {
 			Desktop.getDesktop().browse(new URI(link));

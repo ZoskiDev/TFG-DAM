@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2024-03-09" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3300" locale="es_ES">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2024-05-16" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3300" locale="es_ES">
     <description/>
     <view zooming-state="default:3" id="gantt-chart">
         <field id="tpd15" name="Notas" width="20" order="0"/>
@@ -61,6 +61,17 @@
         </task>
         <task id="13" uid="73c097a30b1a4e5c86aecb3adc189903" name="24 de Abril" meeting="false" start="2024-04-24" duration="1" complete="0" expand="false">
             <task id="14" uid="8782ca16cf67416d82c124e8b040051e" name="Implantacion de SlashCommands" meeting="false" start="2024-04-24" duration="1" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="15" uid="ee192194fed64e378cad89319219fa17" name="8 de Mayo" meeting="false" start="2024-05-08" duration="25" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="false">
+            <task id="18" uid="64138c31ff9849cf864568d988d1bb67" name="Comienzo con la presentación de power point" meeting="false" start="2024-05-08" duration="25" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="16" uid="43e078f59eae4b089440ed36a994dbba" name="9 de Mayo" meeting="false" start="2024-05-09" duration="1" complete="0" expand="true">
+            <task id="19" uid="2b2a12e99e00494d8a151bac341c6855" name="Añadidos listeners de union-abandono de servidor" meeting="false" start="2024-05-09" duration="1" complete="0" thirdDate="2024-04-24" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="17" uid="72ae5ce7a0684d398f9cda9150561a78" name="13 de Mayo" meeting="false" start="2024-05-13" duration="25" complete="0" expand="true">
+            <task id="20" uid="3fda09f797d0433abbd9ff7f1dc7ef82" name="Continuación con PPX de la defensa" meeting="false" start="2024-05-13" duration="1" complete="0" thirdDate="2024-04-24" thirdDate-constraint="0" expand="true"/>
+            <task id="21" uid="2333a8127cd54ae6b8c725b7867a24ff" name="Modificacion de codigo de los slash commands" meeting="false" start="2024-05-13" duration="1" complete="0" thirdDate="2024-04-24" thirdDate-constraint="0" expand="true"/>
+            <task id="22" uid="e09d5bae09604182a4d9f6d6cecd08ca" name="Creación del documento de defensa del TFG" meeting="false" start="2024-05-13" duration="25" complete="0" thirdDate="2024-04-24" thirdDate-constraint="0" expand="true"/>
         </task>
     </tasks>
     <resources/>

@@ -22,6 +22,8 @@ public class SlashCommandsManager {
  * */
 	private static Logger logger = LogManager.getLogger(SlashCommandsManager.class);
 	public static void slashManager(SlashCommandInteraction command, DiscordApi api) {
+		
+		
 		if(command.getCommandName().equals("servidor")) {
 			Optional <Server>	servidorComandoEjecutado = null;
 			//ServerUpdater		updaterServidor = null;
@@ -34,65 +36,89 @@ public class SlashCommandsManager {
 				logger.fatal("ABORTANDO: ERROR FATAL A LA HORA DE CARGAR LOS ARGUMENTOS DEL SLASH COMMAND: " + e.toString());
 				return;
 			}
+			
+			
+			
 			switch (command.getFullCommandName()){
 			case "servidor moderacion silenciar":
 				//Implementar en una clase que sea exclusivamente comandos de moderacion??
-				final String nombreUsuario = usuarioArgumento.get().getName();
-				usuarioArgumento.get().timeout(servidorComandoEjecutado.get(), Duration.ofMinutes(command.getArgumentLongValueByIndex(1).get()))
-				.thenAccept(message -> {
-					String argumento = "";
-					Optional <String> optional_argumento = command.getArgumentStringRepresentationValueByIndex(2);
+				User usuarioTimeout = usuarioArgumento.get();
+				final String nombreUsuario = usuarioTimeout.getName();
+				
+				//Si podemos silenciar al usuario:
+				if(servidorComandoEjecutado.get().canYouTimeoutUser(usuarioTimeout)){
 					
-					if(optional_argumento.isPresent()) 
-						argumento = " Razon: " + optional_argumento.get() + ".";
-					
-					command.createImmediateResponder()
-					.setContent("Usuario: " + nombreUsuario + " ha sido silenciad@ correctamente" + argumento)
-					.respond();
-					
-					logger.info("Invocado canal moderacion silenciar:" +
-							" Invocador: " + command.getUser().getName() + 
-							" Usado contra: " + nombreUsuario + 
-							" tiempo: " + command.getArgumentLongValueByIndex(1).get() + " minutos");
-				});
+					usuarioTimeout.timeout(servidorComandoEjecutado.get(), Duration.ofMinutes(command.getArgumentLongValueByIndex(1).get()))
+					.thenAccept(message -> {
+						String argumento = "";
+						Optional <String> optional_argumento = command.getArgumentStringRepresentationValueByIndex(2);
+						
+						if(optional_argumento.isPresent()) 
+							argumento = " Razon: " + optional_argumento.get() + ".";
+						
+						command.createImmediateResponder()
+						.setContent("Usuario: " + nombreUsuario + " ha sido silenciad@ correctamente" + argumento)
+						.respond();
+						logger.info("Invocado canal moderacion silenciar:" +
+								" Invocador: " + command.getUser().getName() + 
+								" Usado contra: " + nombreUsuario + 
+								" tiempo: " + command.getArgumentLongValueByIndex(1).get() + " minutos");
+					});
+				}
+				else {
+					logger.error("El usuario: " + usuarioTimeout.getName() + " no puede ser silenciado");
+					command.createImmediateResponder().setContent("Error! no se ha podido silenciar al usuario: " + usuarioTimeout.getName() + " es probable que no posea los permisos necesarios en este servidor")
+					.setFlags(MessageFlag.EPHEMERAL).respond();
+				}
 				break;
 			}
 		}
+		
+		
 		else if(command.getCommandName().equals("borrarbloque")) {
-			long cantidadBorrar = 0;
-			TextChannel canalBorrar = null;
-			
-			try {
-				cantidadBorrar = command.getArgumentLongValueByIndex(0).get();
-				if(command.getArgumentChannelValueByIndex(1).isPresent())
-					canalBorrar = api.getTextChannelById(command.getArgumentChannelValueByIndex(1).get().getId()).get();
-				else
-					canalBorrar = command.getChannel().get();
-			}catch(Exception e) {
-				logger.fatal("ABORTANDO: ERROR FATAL A LA HORA DE CARGAR LOS ARGUMENTOS DEL SLASH COMMAND: " + e.toString());
-				return;
+			if(command.getServer().get().canYouManage()) {
+				long cantidadBorrar = 0;
+				TextChannel canalBorrar = null;
+				
+				try {
+					cantidadBorrar = command.getArgumentLongValueByIndex(0).get();
+					if(command.getArgumentChannelValueByIndex(1).isPresent())
+						canalBorrar = api.getTextChannelById(command.getArgumentChannelValueByIndex(1).get().getId()).get();
+					else
+						canalBorrar = command.getChannel().get();
+				}catch(Exception e) {
+					logger.fatal("ABORTANDO: ERROR FATAL A LA HORA DE CARGAR LOS ARGUMENTOS DEL SLASH COMMAND: " + e.toString());
+					return;
+				}
+				MessageSet mset = null;
+				try {
+					mset = canalBorrar.getMessages((int) cantidadBorrar + 1).get();
+				} catch (Exception e) {
+					logger.fatal("ABORTANDO: ERROR FATAL A LA HORA DE RECUPERAR LOS MENSAJES DEL SERVIDOR: " + e.toString());
+					return;
+				}
+				String idCanal = canalBorrar.getIdAsString();
+				String cantBorrados = "" + cantidadBorrar;
+				canalBorrar.deleteMessages(mset).thenAccept(message -> {
+					command.createImmediateResponder()
+					.setContent(cantBorrados + " Mensajes eliminados correctamente")
+					.setFlags(MessageFlag.EPHEMERAL)
+					.respond();
+					logger.info("Invocado borrar bloque:" +
+							" Invocador: " + command.getUser().getName() + 
+							" cantidad a borrar: " + cantBorrados +
+							" en canal: " + idCanal);
+				});
 			}
-			MessageSet mset = null;
-			try {
-				mset = canalBorrar.getMessages((int) cantidadBorrar + 1).get();
-			} catch (Exception e) {
-				logger.fatal("ABORTANDO: ERROR FATAL A LA HORA DE RECUPERAR LOS MENSAJES DEL SERVIDOR: " + e.toString());
-				return;
+			else {
+				logger.error("Error a la hora de borrar mensajes en: " + command.getServer().get() + " Permisos insuficientes");
+				command.createImmediateResponder().setContent("Error! no se pueden borrar mensajes, es probable que no posea los permisos necesarios en este servidor")
+				.setFlags(MessageFlag.EPHEMERAL).respond();
 			}
-			String idCanal = canalBorrar.getIdAsString();
-			String cantBorrados = "" + cantidadBorrar;
-			canalBorrar.deleteMessages(mset).thenAccept(message -> {
-				command.createImmediateResponder()
-				.setContent(cantBorrados + " Mensajes eliminados correctamente")
-				.setFlags(MessageFlag.EPHEMERAL)
-				.respond();
-				logger.info("Invocado borrar bloque:" +
-						" Invocador: " + command.getUser().getName() + 
-						" cantidad a borrar: " + cantBorrados +
-						" en canal: " + idCanal);
-			});
 			
 		}
+		
+		
 		
 		else if(command.getCommandName().equals("conseguirpfp")) {
 			User usuarioObjetivo = command.getArgumentUserValueByIndex(0).get();
@@ -115,5 +141,5 @@ public class SlashCommandsManager {
 						" Objetivo " + usuarioObjetivo.getName());
 			}
 		}
-	}
-}
+	}//slashmanager()
+}//clase 
