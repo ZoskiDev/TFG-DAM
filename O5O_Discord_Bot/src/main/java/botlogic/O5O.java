@@ -1,5 +1,10 @@
 package botlogic;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,12 +27,24 @@ import org.javacord.api.interaction.SlashCommandOptionType;
  * */
 public class O5O {
 	private static Logger logger = LogManager.getLogger(O5O.class);
-	private String token = "MTIyMTQ4MzYyOTMzMTQ4MDc2Ng.Gk7Uod.JwjKrwqSQk_auy1XlFFFOoHqf-bpnKtY-7PN8c";
+	File tokenFile = new File("token.txt");
+	private String token;
 
 	private  DiscordApi api;
 	private Server servidor_seleccionado;
 	
+	
 	public O5O() {
+		try {
+			token = new BufferedReader(new FileReader(tokenFile)).readLine();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("No encuentro archivito");
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		startBot();
 		startMembersListener();
 		startSlashCommands();
