@@ -38,6 +38,7 @@ public class GraphicalUserInterfaceLogic {
 		select_server = new GraphicalUserInterfaceSelectServer(bot.getApi().getServers(), this);
 		send_messages = new GraphicalUserInterfaceSendMessages(this);
 		bad_words = new GraphicalUserInterfaceBadWords(this);
+		createPathBadWords();
 	}
 	/**
 	 * Metodo para comprobar si el bot ha inicializado correctamente
@@ -174,5 +175,10 @@ public class GraphicalUserInterfaceLogic {
 		}
 		bad_words.loadBadWords(badWordstxt);
 		bad_words.setVisible(true);
+	}
+	private void createPathBadWords() {
+		File badWordsPath = new File  ("badWords/");
+		if(!badWordsPath.exists())
+			badWordsPath.mkdir();
 	}
 }

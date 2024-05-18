@@ -34,3 +34,13 @@
 [ERROR] 12-05-2024 22:21:26 [Javacord - Central ExecutorService - 1] SlashCommandsManager - El usuario: nikit02 no puede ser silenciado
 [ERROR] 12-05-2024 22:23:40 [Javacord - Central ExecutorService - 4] SlashCommandsManager - El usuario: maarco_ no puede ser silenciado
 [ERROR] 17-05-2024 21:34:08 [Javacord - Central ExecutorService - 1] SlashCommandsManager - El usuario: scottgamer666 no puede ser silenciado
+[FATAL] 18-05-2024 20:59:00 [Javacord - Central ExecutorService - 1] SlashCommandsManager - ABORTANDO SLASH: la cantidad de minutos no ha sido valida
+[FATAL] 18-05-2024 20:59:01 [Javacord - Central ExecutorService - 1] SlashCommandsManager - ABORTANDO: ERROR FATAL A LA HORA DE RECUPERAR LOS MENSAJES DEL SERVIDOR: java.util.concurrent.ExecutionException: org.javacord.api.exception.BadRequestException: Received a 400 response from Discord with body {"message": "Invalid Form Body", "code": 50035, "errors": {"limit": {"_errors": [{"code": "NUMBER_TYPE_MIN", "message": "int value should be greater than or equal to 1."}]}}}!
+[INFO ] 18-05-2024 20:59:10 [Javacord - Central ExecutorService - 2] SlashCommandsManager - Invocado borrar bloque: Invocador: macarronniman5464 cantidad a borrar: 1 en canal: 1186025590663417867
+[INFO ] 18-05-2024 20:59:25 [Javacord - Central ExecutorService - 1] BadWordsFilter - Mensaje con badWord detectado y eliminado, causante:adrian015187 contenido: Psoe
+[ERROR] 18-05-2024 21:00:07 [Javacord - Central ExecutorService - 4] SlashCommandsManager - El usuario: alvar583 no puede ser silenciado
+[ERROR] 18-05-2024 21:00:20 [Javacord - Central ExecutorService - 1] SlashCommandsManager - El usuario: maestro_cabrombre no puede ser silenciado
+[INFO ] 18-05-2024 21:00:25 [Javacord - Central ExecutorService - 1] SlashCommandsManager - Invocado canal moderacion silenciar: Invocador: zyssk0 Usado contra: maestro_cabrombre tiempo: 3 minutos
+[INFO ] 18-05-2024 21:00:45 [Javacord - Central ExecutorService - 4] BadWordsFilter - Mensaje con badWord detectado y eliminado, causante:zyssk0 contenido: psoe
+[INFO ] 18-05-2024 21:00:57 [Javacord - Central ExecutorService - 5] BadWordsFilter - Mensaje con badWord detectado y eliminado, causante:zyssk0 contenido: hitler no era tan malo
+[INFO ] 18-05-2024 21:01:00 [Javacord - Central ExecutorService - 4] BadWordsFilter - Mensaje con badWord detectado y eliminado, causante:zyssk0 contenido: hitlerdehecho

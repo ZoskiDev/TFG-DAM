@@ -56,9 +56,10 @@ public class BadWordsFilter implements MessageCreateListener{
 	}
 	private void deleteAndInformUser(MessageCreateEvent event) {
 		event.getMessage().delete();
-		logger.info("Mensaje con badWord detectado y eliminado, causante:" + event.getMessageAuthor().getDisplayName() + " contenido: " + event.getMessageContent());
+		logger.info("Mensaje con badWord detectado y eliminado, causante:" + event.getMessageAuthor().getName() + " contenido: " + event.getMessageContent());
 		try {
-			event.getMessageAuthor().asUser().get().openPrivateChannel().get().sendMessage("Se te ha eliminado el mensaje pues contenia una palabra no permitida en el servidor");
+			if(!event.getMessageAuthor().isYourself())
+				event.getMessageAuthor().asUser().get().openPrivateChannel().get().sendMessage("Se te ha eliminado el mensaje porque contenia una palabra no permitida en el servidor");
 		} catch (InterruptedException e) {
 			logger.error("Error al intentar mandar mensaje privado al usuario" + event.getMessageAuthor().getDisplayName());
 			e.printStackTrace();

@@ -2,6 +2,7 @@ package botlogic;
 
 import java.time.Duration;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,8 +40,14 @@ public class SlashCommandsManager {
 			Optional <Server>	servidorComandoEjecutado = null;
 			Optional <User>		usuarioArgumento = null;
 			try {
-				servidorComandoEjecutado = command.getServer();
-				usuarioArgumento = command.getArgumentUserValueByIndex(0);
+				if(command.getServer().isPresent() && command.getArgumentByIndex(0).isPresent()) {
+					servidorComandoEjecutado = command.getServer();
+					usuarioArgumento = command.getArgumentUserValueByIndex(0);
+				}
+				else {
+					logger.fatal("ABORTANDO: ERROR FATAL A LA HORA DE CARGAR EL SERVIDOR Y LOS ARGUMENTOS DEL SLASH COMMAND:");
+					return;
+				}
 			}catch(Exception e) {
 				logger.fatal("ABORTANDO: ERROR FATAL A LA HORA DE CARGAR LOS ARGUMENTOS DEL SLASH COMMAND: " + e.toString());
 				return;
@@ -53,11 +60,13 @@ public class SlashCommandsManager {
 				//Implementar en una clase que sea exclusivamente comandos de moderacion??
 				User usuarioTimeout = usuarioArgumento.get();
 				final String nombreUsuario = usuarioTimeout.getName();
+				Long minutos = command.getArgumentLongValueByIndex(1).orElse((long)-3);
+				Server servidorTimeout = servidorComandoEjecutado.get();
 				
-				//Si podemos silenciar al usuario:
-				if(servidorComandoEjecutado.get().canYouTimeoutUser(usuarioTimeout)){
+				//Si podemos silenciar al usuario y si la cantidad es valida:
+				if(servidorTimeout.canYouTimeoutUser(usuarioTimeout) && (minutos > 0 && minutos < 10081)){
 					
-					usuarioTimeout.timeout(servidorComandoEjecutado.get(), Duration.ofMinutes(command.getArgumentLongValueByIndex(1).get()))
+					usuarioTimeout.timeout(servidorTimeout, Duration.ofMinutes(command.getArgumentLongValueByIndex(1).get()))
 					.thenAccept(message -> {
 						String argumento = "";
 						Optional <String> optional_argumento = command.getArgumentStringRepresentationValueByIndex(2);
@@ -76,7 +85,7 @@ public class SlashCommandsManager {
 				}
 				else {
 					logger.error("El usuario: " + usuarioTimeout.getName() + " no puede ser silenciado");
-					command.createImmediateResponder().setContent("Error! no se ha podido silenciar al usuario: " + usuarioTimeout.getName() + " es probable que no posea los permisos necesarios en este servidor")
+					command.createImmediateResponder().setContent("Error! no se ha podido silenciar al usuario: " + usuarioTimeout.getName() + " es probable que no posea los permisos necesarios en este servidor o se hayan introducido mal los minutos")
 					.setFlags(MessageFlag.EPHEMERAL).respond();
 				}
 				break;
@@ -86,12 +95,14 @@ public class SlashCommandsManager {
 		
 		else if(command.getCommandName().equals("borrarbloque")) {
 			if(command.getServer().get().canYouManage()) {
-				long cantidadBorrar = 0;
+				Long cantidadBorrar = command.getArgumentLongValueByIndex(0).orElse((long)-3);
 				TextChannel canalBorrar = null;
-				
-				try {
-					cantidadBorrar = command.getArgumentLongValueByIndex(0).get();
-					
+				if(!(cantidadBorrar > 0 && cantidadBorrar < Integer.MAX_VALUE)) {
+					logger.fatal("ABORTANDO SLASH: la cantidad de minutos no ha sido valida");
+					command.createImmediateResponder().setContent("Debes introducir una cantidad de mensajes a borrar valida!")
+					.setFlags(MessageFlag.EPHEMERAL).respond();
+				}
+				try {		
 					if(command.getArgumentChannelValueByIndex(1).isPresent())
 						canalBorrar = api.getTextChannelById(command.getArgumentChannelValueByIndex(1).get().getId()).get();
 					else
@@ -102,7 +113,7 @@ public class SlashCommandsManager {
 				}
 				MessageSet mset = null;
 				try {
-					mset = canalBorrar.getMessages((int) cantidadBorrar + 1).get();
+					mset = canalBorrar.getMessages((int) (cantidadBorrar + 1)).get();
 				} catch (Exception e) {
 					logger.fatal("ABORTANDO: ERROR FATAL A LA HORA DE RECUPERAR LOS MENSAJES DEL SERVIDOR: " + e.toString());
 					return;
@@ -149,7 +160,7 @@ public class SlashCommandsManager {
 					.setImage(usuarioObjetivo.getAvatar());
 				command.getChannel().get().sendMessage(emb);
 				
-				logger.info("Invocado borrar bloque:" +
+				logger.info("Invocado conseguirPFP:" +
 						" Invocador: " + command.getUser().getName() + 
 						" Objetivo " + usuarioObjetivo.getName());
 			}
