@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2024-05-16" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3300" locale="es_ES">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2024-05-07" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3300" locale="es_ES">
     <description/>
     <view zooming-state="default:3" id="gantt-chart">
         <field id="tpd15" name="Notas" width="20" order="0"/>
@@ -39,43 +39,131 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="1" uid="58d6446e4669483f8ec3f656594588d0" name="22 de Marzo" color="#990099" meeting="false" start="2024-03-22" duration="1" complete="100" thirdDate="2024-03-14" thirdDate-constraint="0" expand="false">
+        <task id="1" uid="58d6446e4669483f8ec3f656594588d0" name="22 de Marzo" color="#990099" meeting="false" start="2024-03-22" duration="1" complete="100" thirdDate="2024-03-14" thirdDate-constraint="0" expand="true">
             <task id="0" uid="dff2d4e656244a9196d3b0b699613dd4" name="Creacion de los repositorios en Github e implementación" shape="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" meeting="false" start="2024-03-22" duration="1" complete="100" thirdDate="2024-03-11" thirdDate-constraint="0" webLink="https%3A%2F%2Fgithub.com%2FZoskiDev%2FTFG-DAM" expand="true">
-                <notes><![CDATA[Creacion del repositorio donde se alojara el TFG e implementacion del mismo en eclipse tanto para Windows como para MacOS]]></notes>
+                <notes><![CDATA[Creacion del repositorio donde se alojara el TFG e implementacion del mismo en eclipse tanto para Windows como para MacOS
+
+TIEMPO INVERTIDO: 2 HORAS]]></notes>
             </task>
         </task>
         <task id="2" uid="d82f90ec3d5e404c8d858002c64aaeb4" name="24 de Marzo" meeting="false" start="2024-03-24" duration="1" complete="0" thirdDate="2024-03-14" thirdDate-constraint="0" expand="false">
-            <task id="3" uid="f880a5eed74d4a6996f335452fddd3ce" name="Creacion de las clases iniciales" meeting="false" start="2024-03-24" duration="1" complete="0" thirdDate="2024-03-14" thirdDate-constraint="0" expand="true"/>
-            <task id="4" uid="3d51766aa2804b5dad10db62b0d82d0e" name="Configuracion y creacion del bot en la api de discord" meeting="false" start="2024-03-24" duration="1" complete="0" thirdDate="2024-03-14" thirdDate-constraint="0" expand="true"/>
+            <task id="3" uid="f880a5eed74d4a6996f335452fddd3ce" name="Creacion de las clases iniciales" meeting="false" start="2024-03-24" duration="1" complete="0" thirdDate="2024-03-14" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Creacion de las clases iniciales en java para la creacion del bot
+
+TIEMPO INVERTIDO: 3 HORAS]]></notes>
+            </task>
+            <task id="4" uid="3d51766aa2804b5dad10db62b0d82d0e" name="Configuracion y creacion del bot en la api de discord" meeting="false" start="2024-03-24" duration="1" complete="0" thirdDate="2024-03-14" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Creacion del bot en el developer portal y puesta a punto con hello world
+
+TIEMPO INVERTIDO: 3 HORAS]]></notes>
+            </task>
         </task>
         <task id="5" uid="4d8a2fcabf21415884b92000fce7a606" name="6 de Abril" meeting="false" start="2024-04-06" duration="2" complete="0" thirdDate="2024-03-12" thirdDate-constraint="0" expand="false">
-            <task id="7" uid="a3093682325946d29fffeaba304b07af" name="Herramienta de envio de mensajes dinamica" meeting="false" start="2024-04-06" duration="2" complete="0" thirdDate="2024-03-12" thirdDate-constraint="0" expand="true"/>
-            <task id="6" uid="3b8380c8321443e19a77b5ca97db92cf" name="Seleccion de servidor dinamica" meeting="false" start="2024-04-06" duration="1" complete="0" thirdDate="2024-03-12" thirdDate-constraint="0" expand="true"/>
+            <task id="7" uid="a3093682325946d29fffeaba304b07af" name="Herramienta de envio de mensajes dinamica" meeting="false" start="2024-04-06" duration="2" complete="0" thirdDate="2024-03-12" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Creacion de la herramienta para mensajeria entre servidores dinamica
+
+TIEMPO INVERTIDO: 3 HORAS]]></notes>
+            </task>
+            <task id="6" uid="3b8380c8321443e19a77b5ca97db92cf" name="Seleccion de servidor dinamica" meeting="false" start="2024-04-06" duration="1" complete="0" thirdDate="2024-03-12" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Herramienta de seleccion de servidor dinamica
+
+TIEMPO INVERTIDO: 2 HORAS]]></notes>
+            </task>
         </task>
         <task id="8" uid="7cb6c6df87314aeb989d061ee7b39df8" name="8 de Abril" meeting="false" start="2024-04-08" duration="1" complete="0" expand="false">
-            <task id="10" uid="f7ba9040ff104365a2472c0979c788fe" name="Puesta en funcionamiento de herramienta enviar mensaje manual" meeting="false" start="2024-04-08" duration="1" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="true"/>
-            <task id="9" uid="48e3904cec424c78b0200f473b52b47f" name="Reestructuración del modelo vista controlador" meeting="false" start="2024-04-08" duration="1" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="true"/>
+            <task id="10" uid="f7ba9040ff104365a2472c0979c788fe" name="Puesta en funcionamiento de herramienta enviar mensaje manual" meeting="false" start="2024-04-08" duration="1" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Puesta en funcionamiento final para la herramienta de mensajeria, arreglando bugs
+
+TIEMPO INVERTIDO: 2 HORAS]]></notes>
+            </task>
+            <task id="9" uid="48e3904cec424c78b0200f473b52b47f" name="Reestructuración del modelo vista controlador" meeting="false" start="2024-04-08" duration="1" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Reestructuracion de las clases en el modelo vista controlador del proyecto
+
+TIEMPO INVERTIDO: 1 HORA]]></notes>
+            </task>
         </task>
         <task id="11" uid="c1d2b6c7def040bca84193e96721ebce" name="23 de Abril" meeting="false" start="2024-04-23" duration="1" complete="0" expand="false">
-            <task id="12" uid="0671954e141b45a9b3d4d332f37948e6" name="implantacion de logs con log4j de apache" meeting="false" start="2024-04-23" duration="1" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="true"/>
+            <task id="12" uid="0671954e141b45a9b3d4d332f37948e6" name="implantacion de logs con log4j de apache" meeting="false" start="2024-04-23" duration="1" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Implantacion y puesta a punto de los logs con la herramienta log4j de apache
+
+TIEMPO INVERTIDO: 4 HORAS]]></notes>
+            </task>
         </task>
-        <task id="13" uid="73c097a30b1a4e5c86aecb3adc189903" name="24 de Abril" meeting="false" start="2024-04-24" duration="1" complete="0" expand="false">
-            <task id="14" uid="8782ca16cf67416d82c124e8b040051e" name="Implantacion de SlashCommands" meeting="false" start="2024-04-24" duration="1" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="true"/>
+        <task id="13" uid="73c097a30b1a4e5c86aecb3adc189903" name="24 de Abril" meeting="false" start="2024-04-24" duration="1" complete="0" expand="true">
+            <task id="14" uid="8782ca16cf67416d82c124e8b040051e" name="Implantacion de SlashCommands" meeting="false" start="2024-04-24" duration="1" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Implantacion del sistema de slash commands desde el cliente de discord
+
+TIEMPO INVERTIDO: 7 HORAS]]></notes>
+            </task>
         </task>
-        <task id="15" uid="ee192194fed64e378cad89319219fa17" name="8 de Mayo" meeting="false" start="2024-05-08" duration="25" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="false">
-            <task id="18" uid="64138c31ff9849cf864568d988d1bb67" name="Comienzo con la presentación de power point" meeting="false" start="2024-05-08" duration="25" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="true"/>
+        <task id="15" uid="ee192194fed64e378cad89319219fa17" name="8 de Mayo" meeting="false" start="2024-05-08" duration="25" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="true">
+            <task id="18" uid="64138c31ff9849cf864568d988d1bb67" name="Comienzo con la presentación de power point" meeting="false" start="2024-05-08" duration="25" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Creacion y comienzo con el trabajo de presentacion y defensa en power point
+
+TIEMPO INVERTIDO: 6 HORAS]]></notes>
+            </task>
         </task>
-        <task id="16" uid="43e078f59eae4b089440ed36a994dbba" name="9 de Mayo" meeting="false" start="2024-05-09" duration="1" complete="0" expand="false">
-            <task id="19" uid="2b2a12e99e00494d8a151bac341c6855" name="Añadidos listeners de union-abandono de servidor" meeting="false" start="2024-05-09" duration="1" complete="0" thirdDate="2024-04-24" thirdDate-constraint="0" expand="true"/>
+        <task id="16" uid="43e078f59eae4b089440ed36a994dbba" name="9 de Mayo" meeting="false" start="2024-05-09" duration="1" complete="0" expand="true">
+            <task id="19" uid="2b2a12e99e00494d8a151bac341c6855" name="Añadidos listeners de union-abandono de servidor" meeting="false" start="2024-05-09" duration="1" complete="0" thirdDate="2024-04-24" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Creados listeners de bienvenida y despedida a los servidores
+
+TIEMPO INVERTIDO: 2 HORAS]]></notes>
+            </task>
         </task>
-        <task id="17" uid="72ae5ce7a0684d398f9cda9150561a78" name="13 de Mayo" meeting="false" start="2024-05-13" duration="25" complete="0" expand="false">
-            <task id="20" uid="3fda09f797d0433abbd9ff7f1dc7ef82" name="Continuación con PPX de la defensa" meeting="false" start="2024-05-13" duration="1" complete="0" thirdDate="2024-04-24" thirdDate-constraint="0" expand="true"/>
-            <task id="21" uid="2333a8127cd54ae6b8c725b7867a24ff" name="Modificacion de codigo de los slash commands" meeting="false" start="2024-05-13" duration="1" complete="0" thirdDate="2024-04-24" thirdDate-constraint="0" expand="true"/>
-            <task id="22" uid="e09d5bae09604182a4d9f6d6cecd08ca" name="Creación del documento de defensa del TFG" meeting="false" start="2024-05-13" duration="25" complete="0" thirdDate="2024-04-24" thirdDate-constraint="0" expand="true"/>
+        <task id="17" uid="72ae5ce7a0684d398f9cda9150561a78" name="13 de Mayo" meeting="false" start="2024-05-13" duration="25" complete="0" expand="true">
+            <task id="20" uid="3fda09f797d0433abbd9ff7f1dc7ef82" name="Continuación con PPX de la defensa" meeting="false" start="2024-05-13" duration="1" complete="0" thirdDate="2024-04-24" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Continuacion con la defensa en powerpoint
+
+TIEMPO INVERTIDO: 4 HORAS]]></notes>
+            </task>
+            <task id="21" uid="2333a8127cd54ae6b8c725b7867a24ff" name="Modificacion de codigo de los slash commands" meeting="false" start="2024-05-13" duration="1" complete="0" thirdDate="2024-04-24" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Modificacion y alteracion del codigo en los slashcommands para mejor funcionamiento
+
+TIEMPO INVERTIDO: 3 HORAS]]></notes>
+            </task>
+            <task id="22" uid="e09d5bae09604182a4d9f6d6cecd08ca" name="Creación del documento de defensa del TFG" meeting="false" start="2024-05-13" duration="25" complete="0" thirdDate="2024-04-24" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Creacion y primeros pasos de la memoria del TFG
+
+TIEMPO INVERTIDO: 3 HORAS]]></notes>
+            </task>
+            <task id="32" uid="ecd267f7ae2f484ab2f5e217be498523" name="Prueba de Despliegue de la aplicacion" meeting="false" start="2024-05-13" duration="1" complete="0" thirdDate="2024-05-07" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[TIEMPO INVERTIDO: 2 HORAS]]></notes>
+            </task>
         </task>
-        <task id="23" uid="ecee1f97658049ecb5c8bda212b27186" name="14 de Mayo" meeting="false" start="2024-05-14" duration="2" complete="0" expand="false">
-            <task id="25" uid="5dcff5ebdcf942c5b074c8325d71f703" name="Cambiado funcionamiento token.txt" meeting="false" start="2024-05-14" duration="1" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true"/>
-            <task id="24" uid="f243a96e25914bfca7c6f9b92cbcf532" name="Añadido BadWords" meeting="false" start="2024-05-14" duration="2" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true"/>
+        <task id="23" uid="ecee1f97658049ecb5c8bda212b27186" name="14 de Mayo" meeting="false" start="2024-05-14" duration="2" complete="0" expand="true">
+            <task id="25" uid="5dcff5ebdcf942c5b074c8325d71f703" name="Cambiado funcionamiento token.txt" meeting="false" start="2024-05-14" duration="1" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Cambiado el funcionamiento de login del bot, usando un txt
+TIEMPO INVERTIDO: 1 HORA]]></notes>
+            </task>
+            <task id="24" uid="f243a96e25914bfca7c6f9b92cbcf532" name="Añadido BadWords" meeting="false" start="2024-05-14" duration="2" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[añadida la funcionalidad de badWords, filtro automatico de mensajes dinamico por servidor
+
+TIEMPO INVERTIDO: 2 HORAS]]></notes>
+            </task>
+        </task>
+        <task id="26" uid="ee44a41138314521b460a0cbdcc9fa1f" name="17 de Mayo" meeting="false" start="2024-05-17" duration="2" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
+            <task id="27" uid="a98f052e713d46eeb1af712be2fb541b" name="Creacion de la GUI de badWords" meeting="false" start="2024-05-17" duration="2" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Creacion de la GUI encargada de manejar la herramienta de badWords
+
+TIEMPO INVERTIDO: 2 HORAS]]></notes>
+            </task>
+            <task id="28" uid="2dc60d555b75402da68617a35a85fb41" name="Creacion de la logica de badWords" meeting="false" start="2024-05-17" duration="2" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Creacion de la logica encargada de la herramienta badWords
+
+TIEMPO INVERTIDO: 4 HORAS]]></notes>
+            </task>
+        </task>
+        <task id="29" uid="9defd9385ade46abaf73bfcf21b46475" name="18 de Mayo" meeting="false" start="2024-05-18" duration="1" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
+            <task id="30" uid="20d8825bdf894424b384b4b2f1f2cc02" name="Parcheo de bugs con badWords" meeting="false" start="2024-05-18" duration="1" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Parcheo de bugs tanto en logica como en gui de la herramienta badWords
+
+TIEMPO INVERTIDO: 3 HORAS]]></notes>
+            </task>
+            <task id="31" uid="6916547d47394c80a8ac4b118ec14ce2" name="Cambios en la GUI principal" meeting="false" start="2024-05-18" duration="1" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Cambios en la GUI principal, quitando funciones que no se van a implementar
+
+TIEMPO INVERTIDO: 1 HORA]]></notes>
+            </task>
         </task>
     </tasks>
     <resources/>

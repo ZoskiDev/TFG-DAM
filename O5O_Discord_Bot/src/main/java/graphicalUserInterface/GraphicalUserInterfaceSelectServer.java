@@ -23,6 +23,8 @@ import org.javacord.api.entity.server.Server;
 import botlogic.O5O;
 
 /**
+ * 
+ * @author Zyssk0
  * Clase GraphicalUserInterfaceSelectServer, esta clase representa un JDialog para seleccionar un servidor con el cual trabajar 
  * 
  * */

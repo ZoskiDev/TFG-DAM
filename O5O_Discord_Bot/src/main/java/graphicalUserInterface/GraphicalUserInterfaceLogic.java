@@ -29,6 +29,11 @@ public class GraphicalUserInterfaceLogic {
 	private GraphicalUserInterfaceBadWords bad_words;
 	private O5O bot = new O5O();
 	
+	/**
+	 * Constructor de la clase GraphicalUserInterfaceLogic
+	 * 
+	 * este constructor se encarga de lanzar las interfaces hijas en un segundo plano y tenerlas en espera hasta la necesaria utilizacion de las mismas
+	 * */
 	public GraphicalUserInterfaceLogic() {
 		select_server = new GraphicalUserInterfaceSelectServer(bot.getApi().getServers(), this);
 		send_messages = new GraphicalUserInterfaceSendMessages(this);
@@ -49,9 +54,20 @@ public class GraphicalUserInterfaceLogic {
 		return false;
 	}
 	
+	/**
+	 * Metodo getBotApi
+	 * 
+	 * @return la api del bot en la que se esta trabajando
+	 * */
 	public  DiscordApi getBotApi() {
 		return bot.getApi();
 	}
+	/**
+	 * Metodo setActiveServer
+	 * 
+	 * este metodo se encarga de lanzar la interfaz GraphicalUserInterfaceSelectServer
+	 * 
+	 * */
 	public void setActiveServer() {
 		try{
 			select_server.setVisible(true);
@@ -63,6 +79,15 @@ public class GraphicalUserInterfaceLogic {
 		}
 	}
 	
+	/**
+	 * Metodo getActiveServer
+	 * 
+	 * este metodo se encarga de recibir el nombre del servidor donde se esta trabajando actualmente
+	 * 
+	 * @return el nombre del objeto servidor en el que se este trabajando, si lo hay
+	 * 
+	 * @return null si no existe un servidor en el que se este trabajando.
+	 * */
 	public String getActiveServerName() {
 		String serverName = "";
 		try {
@@ -74,33 +99,68 @@ public class GraphicalUserInterfaceLogic {
 		return serverName;
 	}
 	
+	/**
+	 * Metodo para indicar si hay un servidor activo para trabajar
+	 * 
+	 * @return true si lo hay
+	 * 
+	 * @return false si no lo hay
+	 * */
 	public boolean isServerActive() {
-		if (bot.getServidor_seleccionado() != null)
-				return true;
-		return false;
+		return bot.isServerSetted();
 	}
 	
+	/**
+	 * startMessagesGUI
+	 * 
+	 * metodo encargado de cargar los canales de un servidor y lanzar la clase GraphicalUserInterfaceSendMessages
+	 * */
 	public void startMessagesGUI() {
 			send_messages.fillJComboBox(bot.getServidor_seleccionado());
 			send_messages.setVisible(true);
 		}
-	
+	/**
+	 * sendMessageToBot
+	 * 
+	 * metodo encargado de dar la señal al bot para mandar un mensaje
+	 * 
+	 * @param message como mensaje a mandar
+	 * 
+	 * @param channelID como ID del canal al que mandar el mensaje
+	 * */
 	public void sendMessageToBot(String message, String channelID) {
 		bot.sendMessage(message, channelID);
 	}
+	/**
+	 * getInviteLink
+	 * 
+	 * este metodo se encarga de dar una invitacion CON TODOS LOS PERMISOS
+	 * 
+	 * sus salidas son tanto por consola como por navegador
+	 * 
+	 * */
 	public void getInviteLink() {
 		String link = bot.getApi().createBotInvite(Permissions.fromBitmask(888));
 		System.out.println("link de invitacion de O5O" + link);
 		try {
 			Desktop.getDesktop().browse(new URI(link));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			logger.error("Excepcion capturada > " + e.toString());
 			e.printStackTrace();
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
+			logger.error("Error en el envio de la URI para navegador > " + e.toString());
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * startBadWordsGUI
+	 * 
+	 * este metodo trabaja en dos partes
+	 * 
+	 * la primera es creando un archivo de configuracion de badWords si no existe uno previamente
+	 * 
+	 * en caso de que exista, lo manda a la interfaz GraphicalUserInterfaceBadWords
+	 * */
 	public void startBadWordsGUI() {
 		String txtName = getActiveServerName() + "badWords.txt";
 		File badWordstxt = new File("badWords/" + txtName);
@@ -108,7 +168,7 @@ public class GraphicalUserInterfaceLogic {
 			try {
 				badWordstxt.createNewFile();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				logger.error("Error de entrada salida a la hora de crear el archivo de badwords >" + e.toString());
 				e.printStackTrace();
 			}
 		}

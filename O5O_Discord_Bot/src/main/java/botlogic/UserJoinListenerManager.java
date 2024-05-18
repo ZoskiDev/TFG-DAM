@@ -8,6 +8,11 @@ import org.javacord.api.entity.channel.PrivateChannel;
 import org.javacord.api.event.server.member.ServerMemberJoinEvent;
 import org.javacord.api.listener.server.member.ServerMemberJoinListener;
 
+/**
+ * @author Zyssk0
+ * 
+ * Clase que representa el behaviour del bot a la hora de que se una un usuario a un servidor
+ * */
 public class UserJoinListenerManager implements ServerMemberJoinListener{
 
 	private static Logger logger = LogManager.getLogger(UserJoinListenerManager.class);

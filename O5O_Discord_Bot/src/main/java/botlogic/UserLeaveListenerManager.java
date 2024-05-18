@@ -7,7 +7,11 @@ import org.apache.logging.log4j.Logger;
 import org.javacord.api.entity.channel.PrivateChannel;
 import org.javacord.api.event.server.member.ServerMemberLeaveEvent;
 import org.javacord.api.listener.server.member.ServerMemberLeaveListener;
-
+/**
+ * @author Zyssk0
+ * 
+ * Clase que representa el behaviour del bot a la hora de que un usuario abandone un servidor
+ * */
 public class UserLeaveListenerManager implements ServerMemberLeaveListener{
 
 	private static Logger logger = LogManager.getLogger(UserLeaveListenerManager.class);

@@ -2,13 +2,11 @@ package botlogic;
 
 import java.time.Duration;
 import java.util.Optional;
-import java.util.concurrent.ExecutionException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.entity.channel.TextChannel;
-import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.entity.message.MessageFlag;
 import org.javacord.api.entity.message.MessageSet;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
@@ -16,21 +14,32 @@ import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
 import org.javacord.api.interaction.SlashCommandInteraction;
 
+/**
+ * @author Zyssk0
+ * Clase SlashCommandsManager, esta clase representa el comportamiento (behaviour) que debe tomar cada slash al ser invocado mediante
+ * el cliente de discord
+ * @see O5O.java para los Slash Existentes
+ * */
 public class SlashCommandsManager {
 /* TODO Refactorizar el if con un switch dentro (no tiene mucho sentido...)
  * TODO Encapsular herramientas de moderacion (timeout, delete etc... en una subclase para evitar lineas largas como la 38)
  * */
 	private static Logger logger = LogManager.getLogger(SlashCommandsManager.class);
+	/**
+	 * slashManager, este metodo esta creado para el behaviour de cada slash
+	 * 
+	 * @param SlashCommandInteraction como comando ejecutado
+	 * 
+	 * @param DiscordApi como api del bot que debe ejecutar el programa
+	 * */
 	public static void slashManager(SlashCommandInteraction command, DiscordApi api) {
 		
 		
 		if(command.getCommandName().equals("servidor")) {
 			Optional <Server>	servidorComandoEjecutado = null;
-			//ServerUpdater		updaterServidor = null;
 			Optional <User>		usuarioArgumento = null;
 			try {
 				servidorComandoEjecutado = command.getServer();
-				//updaterServidor = new ServerUpdater(servidorComandoEjecutado.get());
 				usuarioArgumento = command.getArgumentUserValueByIndex(0);
 			}catch(Exception e) {
 				logger.fatal("ABORTANDO: ERROR FATAL A LA HORA DE CARGAR LOS ARGUMENTOS DEL SLASH COMMAND: " + e.toString());
@@ -82,6 +91,7 @@ public class SlashCommandsManager {
 				
 				try {
 					cantidadBorrar = command.getArgumentLongValueByIndex(0).get();
+					
 					if(command.getArgumentChannelValueByIndex(1).isPresent())
 						canalBorrar = api.getTextChannelById(command.getArgumentChannelValueByIndex(1).get().getId()).get();
 					else
@@ -121,21 +131,24 @@ public class SlashCommandsManager {
 		
 		
 		else if(command.getCommandName().equals("conseguirpfp")) {
-			User usuarioObjetivo = command.getArgumentUserValueByIndex(0).get();
-			if (usuarioObjetivo == null) {
+			if (command.getArgumentUserValueByIndex(0).isEmpty()) {
 				System.out.println("NO HA ENCONTRADO USUARIO");
 				command.createImmediateResponder().setContent("No se ha proporcionado usuario objetivo")
 				.setFlags(MessageFlag.EPHEMERAL)
 				.respond();
 			}
 			else {
+				User usuarioObjetivo = command.getArgumentUserValueByIndex(0).get();
+				
 				String toSend = command.getUser().getName() + " aqui tienes la imagen de: " + usuarioObjetivo.getName();
+				
 				//TODO que no sea una bazofia de respond inmediato y se quede pensando hasta que tengas bien mandada la imagen
 				command.createImmediateResponder().setContent("Recibido, en breves tendras la imagen!").setFlags(MessageFlag.EPHEMERAL).respond();
 					EmbedBuilder emb = new EmbedBuilder()
 					.setTitle(toSend)
 					.setImage(usuarioObjetivo.getAvatar());
 				command.getChannel().get().sendMessage(emb);
+				
 				logger.info("Invocado borrar bloque:" +
 						" Invocador: " + command.getUser().getName() + 
 						" Objetivo " + usuarioObjetivo.getName());

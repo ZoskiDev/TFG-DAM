@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * @author Zyssk0
- * Clase representada para la vista en el modelo del proyecto
+ * Clase representada para la vista principal del bot en el modelo del proyecto
  * */
 public class GraphicalUserInterfaceO5O extends JFrame{
 	/**
@@ -34,9 +34,21 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 	private JLabel						lbl_status;
 	private JLabel						lbl_server;
 	
+	/**
+	 * popUpErrorServer
+	 * 
+	 * metodo utilizado para mostrar un JOptionPane indicando un error especifico de error a la hora de seleccionar un servidor
+	 * */
 	private void popUpErrorServer() {
 		JOptionPane.showMessageDialog(null, "Selecciona un servidor antes", "Error servidor", JOptionPane.ERROR_MESSAGE);
 	}
+	/**
+	 * checkBotStatus
+	 * 
+	 * este metodo se encarga de comprobar si el bot se ha inicializado satisfactoriamente
+	 * e imprime en pantalla el estado del mismo
+	 * 
+	 * */
 	private void checkBotStatus() {
 		if(logica.isBotReady()) {
 			lbl_status.setText(lbl_status.getText() + " ONLINE");
@@ -74,21 +86,6 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 			
 			JMenuItem mntm_badWords = new JMenuItem("Filtro palabras");
 			mn_opciones_1.add(mntm_badWords);
-		
-		//Fin de sector de menubar
-		
-		
-		
-		// Inicio de sector central consola logs
-			
-			JScrollPane scrollPane = new JScrollPane();
-			getContentPane().add(scrollPane, BorderLayout.CENTER);
-			
-			JTextArea textAreaLOG = new JTextArea();
-			textAreaLOG.setEditable(false);
-			textAreaLOG.setRows(20);
-			textAreaLOG.setColumns(60);
-			getContentPane().add(textAreaLOG, BorderLayout.WEST);
 		
 		// Fin de sector central consola logs	
 		

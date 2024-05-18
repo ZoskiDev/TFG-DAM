@@ -33,3 +33,4 @@
 [INFO ] 12-05-2024 22:17:46 [Javacord - Central ExecutorService - 2] SlashCommandsManager - Invocado borrar bloque: Invocador: zyssk0 cantidad a borrar: 1 en canal: 1186025590663417867
 [ERROR] 12-05-2024 22:21:26 [Javacord - Central ExecutorService - 1] SlashCommandsManager - El usuario: nikit02 no puede ser silenciado
 [ERROR] 12-05-2024 22:23:40 [Javacord - Central ExecutorService - 4] SlashCommandsManager - El usuario: maarco_ no puede ser silenciado
+[ERROR] 17-05-2024 21:34:08 [Javacord - Central ExecutorService - 1] SlashCommandsManager - El usuario: scottgamer666 no puede ser silenciado
