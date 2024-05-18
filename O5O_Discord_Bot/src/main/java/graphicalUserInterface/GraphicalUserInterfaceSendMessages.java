@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +40,8 @@ public class GraphicalUserInterfaceSendMessages extends JDialog {
 		setup();
 	}
 	public void fillJComboBox(Server toFill) {
+		id_channels.clear();
+		comboBox_SelCanal.removeAllItems();
 		setTitle("Mandando mensaje en: " + toFill.getName());
 		List <ServerTextChannel> canales = toFill.getTextChannels();
 		for(ServerTextChannel canal: canales) {
@@ -115,6 +119,14 @@ public class GraphicalUserInterfaceSendMessages extends JDialog {
 					clearText();
 				}
 			});
+			
+			 // Añadir un WindowListener para manejar el evento de cierre
+	        this.addWindowListener(new WindowAdapter() {
+	            @Override
+	            public void windowClosing(WindowEvent e) {
+	                clearText();
+	            }
+	        });
 			
 		//Fin listeners
 	}

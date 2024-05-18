@@ -108,7 +108,7 @@ public class GraphicalUserInterfaceSelectServer extends JDialog {
 		}
 	}
 	public Optional<Server> getServidor_seleccionado() {
-		return servidor_seleccionado;
+		return servidor_seleccionado.or(() -> Optional.empty());
 	}
 	public void setServidor_seleccionado(Optional<Server> servidor_seleccionado) {
 		this.servidor_seleccionado = servidor_seleccionado;

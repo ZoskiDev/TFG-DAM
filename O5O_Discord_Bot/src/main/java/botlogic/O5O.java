@@ -155,7 +155,8 @@ public class O5O {
 	 * @param Server servidor a trabajar 
 	 * */
 	public void setServidor_seleccionado(Server servidor_seleccionado) {
-		this.servidor_seleccionado = servidor_seleccionado;
+		if (servidor_seleccionado != null)
+			this.servidor_seleccionado = servidor_seleccionado;
 	}
 	
 	/**

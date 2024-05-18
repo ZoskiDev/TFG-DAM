@@ -72,9 +72,9 @@ public class GraphicalUserInterfaceLogic {
 	public void setActiveServer() {
 		try{
 			select_server.setVisible(true);
-			bot.setServidor_seleccionado(select_server.getServidor_seleccionado().get());  
-		}catch(Exception e) {
-			logger.error("Excepcion capturada en metodo: setActiveServer() " + e.toString() + " retornando valor null");
+			bot.setServidor_seleccionado(select_server.getServidor_seleccionado().get());
+			select_server.getServidor_seleccionado().ifPresent(bot::setServidor_seleccionado);
+		}catch(Exception e) {			
 			if(!isServerActive())
 				bot.setServidor_seleccionado(null);
 		}
@@ -142,7 +142,7 @@ public class GraphicalUserInterfaceLogic {
 	 * */
 	public void getInviteLink() {
 		String link = bot.getApi().createBotInvite(Permissions.fromBitmask(888));
-		System.out.println("link de invitacion de O5O" + link);
+		System.out.println("link de invitacion de O5O: " + link);
 		try {
 			Desktop.getDesktop().browse(new URI(link));
 		} catch (IOException e) {

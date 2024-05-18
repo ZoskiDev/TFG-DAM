@@ -44,3 +44,7 @@
 [INFO ] 18-05-2024 21:00:45 [Javacord - Central ExecutorService - 4] BadWordsFilter - Mensaje con badWord detectado y eliminado, causante:zyssk0 contenido: psoe
 [INFO ] 18-05-2024 21:00:57 [Javacord - Central ExecutorService - 5] BadWordsFilter - Mensaje con badWord detectado y eliminado, causante:zyssk0 contenido: hitler no era tan malo
 [INFO ] 18-05-2024 21:01:00 [Javacord - Central ExecutorService - 4] BadWordsFilter - Mensaje con badWord detectado y eliminado, causante:zyssk0 contenido: hitlerdehecho
+[INFO ] 19-05-2024 01:10:30 [Javacord - Central ExecutorService - 1] BadWordsFilter - Mensaje con badWord detectado y eliminado, causante:maarco_ contenido: psoe
+[INFO ] 19-05-2024 01:10:35 [Javacord - Central ExecutorService - 3] BadWordsFilter - Mensaje con badWord detectado y eliminado, causante:nikit02 contenido: PSOE
+[INFO ] 19-05-2024 01:14:48 [AWT-EventQueue-0] O5O - mensaje correctamente enviado a canal con ID:1186025590663417867 contenido: h
+
