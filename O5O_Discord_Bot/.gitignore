@@ -1,2 +1,3 @@
 /target/
-*.txt
+token.txt
+/logs/

@@ -1,0 +1,5 @@
+Apache [O5O Discord Bot]
+Copyright [2024-2024] The Apache Software Foundation
+
+This product includes software developed at
+The Apache Software Foundation (/).
