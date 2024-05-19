@@ -9,7 +9,15 @@ el archivo debe contener unicamente el contenido del token, en una sola linea.
 
 
 2. INICIAR APP
+	Windows:
+	Ejecuta el archivo .bat en la carpeta /bin
+	
+	Linux/Unix:
+	Ejecuta el archivo sin extensión
+	
+	MacOSX:
+	Ejecuta el archivo especifico para MacOSX incluido en la carpeta bin
 
-Para que O5O funcione, debes ir a la carpeta /bin y ejecutar el script .bat (IMPORTANTE QUE TENGAS EL ARCHIVO TOKEN.TXT CON LA RESPECTIVA CLAVE)
+Para que O5O funcione, debes tener la respectiva clave de tu aplicacion generada en el archivo token.txt
 
 
