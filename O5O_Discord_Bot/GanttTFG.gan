@@ -89,28 +89,28 @@ TIEMPO INVERTIDO: 1 HORA]]></notes>
 TIEMPO INVERTIDO: 4 HORAS]]></notes>
             </task>
         </task>
-        <task id="13" uid="73c097a30b1a4e5c86aecb3adc189903" name="24 de Abril" meeting="false" start="2024-04-24" duration="1" complete="0" expand="true">
+        <task id="13" uid="73c097a30b1a4e5c86aecb3adc189903" name="24 de Abril" meeting="false" start="2024-04-24" duration="1" complete="0" expand="false">
             <task id="14" uid="8782ca16cf67416d82c124e8b040051e" name="Implantacion de SlashCommands" meeting="false" start="2024-04-24" duration="1" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[Implantacion del sistema de slash commands desde el cliente de discord
 
 TIEMPO INVERTIDO: 7 HORAS]]></notes>
             </task>
         </task>
-        <task id="15" uid="ee192194fed64e378cad89319219fa17" name="8 de Mayo" meeting="false" start="2024-05-08" duration="25" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="true">
+        <task id="15" uid="ee192194fed64e378cad89319219fa17" name="8 de Mayo" meeting="false" start="2024-05-08" duration="25" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="false">
             <task id="18" uid="64138c31ff9849cf864568d988d1bb67" name="Comienzo con la presentación de power point" meeting="false" start="2024-05-08" duration="25" complete="0" thirdDate="2024-03-09" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[Creacion y comienzo con el trabajo de presentacion y defensa en power point
 
 TIEMPO INVERTIDO: 6 HORAS]]></notes>
             </task>
         </task>
-        <task id="16" uid="43e078f59eae4b089440ed36a994dbba" name="9 de Mayo" meeting="false" start="2024-05-09" duration="1" complete="0" expand="true">
+        <task id="16" uid="43e078f59eae4b089440ed36a994dbba" name="9 de Mayo" meeting="false" start="2024-05-09" duration="1" complete="0" expand="false">
             <task id="19" uid="2b2a12e99e00494d8a151bac341c6855" name="Añadidos listeners de union-abandono de servidor" meeting="false" start="2024-05-09" duration="1" complete="0" thirdDate="2024-04-24" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[Creados listeners de bienvenida y despedida a los servidores
 
 TIEMPO INVERTIDO: 2 HORAS]]></notes>
             </task>
         </task>
-        <task id="17" uid="72ae5ce7a0684d398f9cda9150561a78" name="13 de Mayo" meeting="false" start="2024-05-13" duration="25" complete="0" expand="true">
+        <task id="17" uid="72ae5ce7a0684d398f9cda9150561a78" name="13 de Mayo" meeting="false" start="2024-05-13" duration="25" complete="0" expand="false">
             <task id="20" uid="3fda09f797d0433abbd9ff7f1dc7ef82" name="Continuación con PPX de la defensa" meeting="false" start="2024-05-13" duration="1" complete="0" thirdDate="2024-04-24" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[Continuacion con la defensa en powerpoint
 
@@ -130,7 +130,7 @@ TIEMPO INVERTIDO: 3 HORAS]]></notes>
                 <notes><![CDATA[TIEMPO INVERTIDO: 2 HORAS]]></notes>
             </task>
         </task>
-        <task id="23" uid="ecee1f97658049ecb5c8bda212b27186" name="14 de Mayo" meeting="false" start="2024-05-14" duration="2" complete="0" expand="true">
+        <task id="23" uid="ecee1f97658049ecb5c8bda212b27186" name="14 de Mayo" meeting="false" start="2024-05-14" duration="2" complete="0" expand="false">
             <task id="25" uid="5dcff5ebdcf942c5b074c8325d71f703" name="Cambiado funcionamiento token.txt" meeting="false" start="2024-05-14" duration="1" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[Cambiado el funcionamiento de login del bot, usando un txt
 TIEMPO INVERTIDO: 1 HORA]]></notes>
@@ -141,7 +141,7 @@ TIEMPO INVERTIDO: 1 HORA]]></notes>
 TIEMPO INVERTIDO: 2 HORAS]]></notes>
             </task>
         </task>
-        <task id="26" uid="ee44a41138314521b460a0cbdcc9fa1f" name="17 de Mayo" meeting="false" start="2024-05-17" duration="2" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
+        <task id="26" uid="ee44a41138314521b460a0cbdcc9fa1f" name="17 de Mayo" meeting="false" start="2024-05-17" duration="2" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="false">
             <task id="27" uid="a98f052e713d46eeb1af712be2fb541b" name="Creacion de la GUI de badWords" meeting="false" start="2024-05-17" duration="2" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[Creacion de la GUI encargada de manejar la herramienta de badWords
 
@@ -153,7 +153,7 @@ TIEMPO INVERTIDO: 2 HORAS]]></notes>
 TIEMPO INVERTIDO: 4 HORAS]]></notes>
             </task>
         </task>
-        <task id="29" uid="9defd9385ade46abaf73bfcf21b46475" name="18 de Mayo" meeting="false" start="2024-05-18" duration="1" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
+        <task id="29" uid="9defd9385ade46abaf73bfcf21b46475" name="18 de Mayo" meeting="false" start="2024-05-18" duration="1" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="false">
             <task id="30" uid="20d8825bdf894424b384b4b2f1f2cc02" name="Parcheo de bugs con badWords" meeting="false" start="2024-05-18" duration="1" complete="0" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[Parcheo de bugs tanto en logica como en gui de la herramienta badWords
 
@@ -163,6 +163,19 @@ TIEMPO INVERTIDO: 3 HORAS]]></notes>
                 <notes><![CDATA[Cambios en la GUI principal, quitando funciones que no se van a implementar
 
 TIEMPO INVERTIDO: 1 HORA]]></notes>
+            </task>
+        </task>
+        <task id="33" uid="b2fe8841394b40a39e492bb1571fc2dd" name="19 de Mayo" meeting="false" start="2024-05-19" duration="1" complete="0" expand="true">
+            <task id="35" uid="2a2f828c29f04b67ac1c090871e383dd" name="Comprobaciones finales de bugs" meeting="false" start="2024-05-19" duration="1" complete="0" thirdDate="2024-05-07" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Comprobacion finales de casos de uso y bugs visuales menores
+
+TIEMPO INVERTIDO: 4 HORAS]]></notes>
+            </task>
+            <task id="34" uid="78ea593e9de343daadf00ccccce9e28b" name="Bugs de despliegue en MAC" meeting="false" start="2024-05-19" duration="1" complete="0" thirdDate="2024-05-07" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Solucionado un bug de despliegue en MAC que generaba conflicto con la ruta (Cosas de Mac jiji)
+
+TIEMPO INVERTIDO: 2 HORAS
+]]></notes>
             </task>
         </task>
     </tasks>
