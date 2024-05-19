@@ -8,11 +8,13 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.entity.permission.Permissions;
+import org.javacord.api.entity.server.Server;
 
 import botlogic.O5O;
 
@@ -27,7 +29,7 @@ public class GraphicalUserInterfaceLogic {
 	private GraphicalUserInterfaceSelectServer select_server;
 	private GraphicalUserInterfaceSendMessages send_messages;
 	private GraphicalUserInterfaceBadWords bad_words;
-	private O5O bot = new O5O();
+	private O5O bot;
 	
 	/**
 	 * Constructor de la clase GraphicalUserInterfaceLogic
@@ -35,6 +37,7 @@ public class GraphicalUserInterfaceLogic {
 	 * este constructor se encarga de lanzar las interfaces hijas en un segundo plano y tenerlas en espera hasta la necesaria utilizacion de las mismas
 	 * */
 	public GraphicalUserInterfaceLogic() {
+		bot = new O5O(this);
 		select_server = new GraphicalUserInterfaceSelectServer(bot.getApi().getServers(), this);
 		send_messages = new GraphicalUserInterfaceSendMessages(this);
 		bad_words = new GraphicalUserInterfaceBadWords(this);
@@ -92,9 +95,10 @@ public class GraphicalUserInterfaceLogic {
 	public String getActiveServerName() {
 		String serverName = "";
 		try {
-			serverName =  bot.getServidor_seleccionado().getName();
-		}catch(Exception e) {
-			logger.error("Excepcion capturada en metodo: getActiveServerName() " + e.toString() + " retornando valor null");
+			if(bot.getServidor_seleccionado() != null)
+				serverName = bot.getServidor_seleccionado().getName();
+		}catch(NullPointerException e) {
+			logger.error("no existe valor de servidor seleccionado, retornando null");
 			return null;
 		}
 		return serverName;
@@ -180,5 +184,16 @@ public class GraphicalUserInterfaceLogic {
 		File badWordsPath = new File  ("badWords/");
 		if(!badWordsPath.exists())
 			badWordsPath.mkdir();
+	}
+	public void removeServerFromList(String toRemove) {
+		select_server.removeServer(toRemove);
+		//Si el servidor que se ha ido es el seleccionado en el momento
+		if(bot.getServidor_seleccionado().getName().equalsIgnoreCase(toRemove)) {
+			bot.setServidor_seleccionado(null);
+			GraphicalUserInterfaceO5O.setVoidToServidorSeleccionado();
+		}
+	}
+	public void addServerFromList(Server toAdd) {
+		select_server.addServer(toAdd);
 	}
 }

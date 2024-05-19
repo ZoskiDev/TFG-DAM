@@ -29,7 +29,7 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 	private Color 						colorVerde;
 	private Color 						colorRojo;
 	private JLabel						lbl_status;
-	private JLabel						lbl_server;
+	private static JLabel						lbl_server;
 	
 	/**
 	 * popUpErrorServer
@@ -154,6 +154,9 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+	}
+	public static void setVoidToServidorSeleccionado() {
+		lbl_server.setText("Servidor Seleccionado: ");
 	}
 
 }

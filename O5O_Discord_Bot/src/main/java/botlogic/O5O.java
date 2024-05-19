@@ -21,6 +21,8 @@ import org.javacord.api.interaction.SlashCommand;
 import org.javacord.api.interaction.SlashCommandBuilder;
 import org.javacord.api.interaction.SlashCommandOption;
 import org.javacord.api.interaction.SlashCommandOptionType;
+
+import graphicalUserInterface.GraphicalUserInterfaceLogic;
 /**
  * @author Zyssk0
  * Clase creada para representar al bot de discord O5O, encargado de llevar a cabo las ordenes de la aplicacion
@@ -29,6 +31,7 @@ public class O5O {
 	private static Logger logger = LogManager.getLogger(O5O.class);
 	File tokenFile = new File("token.txt");
 	private String token;
+	private GraphicalUserInterfaceLogic logicaHija;
 
 	private  DiscordApi api;
 	private Server servidor_seleccionado;
@@ -36,9 +39,10 @@ public class O5O {
 	/**
 	 * Constructor de la clase O5O, este constructor no recibe ningun parametro de entrada
 	 * */
-	public O5O() {
+	public O5O(GraphicalUserInterfaceLogic logicaHija) {
 		try(BufferedReader lector = new BufferedReader(new FileReader(tokenFile))){
 			token = lector.readLine();
+			this.logicaHija = logicaHija;
 		} catch (FileNotFoundException e) {
 			logger.fatal("ERROR FATAL, NO SE ENCUENTRA ARCHIVO TOKEN.TXT PARA INICIALIZAR BOT, ABORTANDO!!!");
 			System.exit(1);
@@ -115,9 +119,12 @@ public class O5O {
 		);
 	}
 	public void startStartUpListeners() {
+		ServerOnJoinOrLeaveListener srvrjoinleave = new ServerOnJoinOrLeaveListener(logicaHija);
 		api.addServerMemberJoinListener(new UserJoinListenerManager());
 		api.addServerMemberLeaveListener(new UserLeaveListenerManager());
 		api.addMessageCreateListener(new BadWordsFilter());
+		api.addServerJoinListener(srvrjoinleave);
+		api.addServerLeaveListener(srvrjoinleave);
 	}
 	/**
 	 * Retorna la clase api del bot
@@ -155,7 +162,6 @@ public class O5O {
 	 * @param Server servidor a trabajar 
 	 * */
 	public void setServidor_seleccionado(Server servidor_seleccionado) {
-		if (servidor_seleccionado != null)
 			this.servidor_seleccionado = servidor_seleccionado;
 	}
 	
@@ -167,10 +173,15 @@ public class O5O {
 	 * 
 	 * */
 	public void sendMessage(String toSend, String channelID) {
-		new MessageBuilder()
-			.setContent(toSend)
-			.send(api.getTextChannelById(channelID).get());
-		logger.info("mensaje correctamente enviado a canal con ID:" + channelID + " contenido: " + toSend);
+		api.getTextChannelById(channelID).ifPresentOrElse(x -> {
+				new MessageBuilder()
+				.setContent(toSend)
+				.send(api.getTextChannelById(channelID).get());
+				logger.info("mensaje correctamente enviado a canal con ID:" + channelID + " contenido: " + toSend);
+				}
+				,() ->  logger.error("Error a la hora de enviar mensaje, canal: " + channelID + " no encontrado"));
+		
+		
 	}
 
 	

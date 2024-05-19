@@ -58,6 +58,16 @@ public class GraphicalUserInterfaceSelectServer extends JDialog {
 		
 		
 	}
+	
+	public void removeServer(String toRemove) {
+		comboBox_servidor.removeItem(toRemove);
+		id_servers.remove(toRemove);
+	}
+	
+	public void addServer(Server toAdd) {
+		id_servers.put(toAdd.getName(), toAdd.getIdAsString());
+		comboBox_servidor.addItem(toAdd.getName());
+	}
 	private void setup() {
 		setModal(true);
 		setBounds(100, 100, 286, 195);
