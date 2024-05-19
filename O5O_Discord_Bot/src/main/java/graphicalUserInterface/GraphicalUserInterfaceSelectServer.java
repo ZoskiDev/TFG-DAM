@@ -20,8 +20,6 @@ import javax.swing.border.EmptyBorder;
 
 import org.javacord.api.entity.server.Server;
 
-import botlogic.O5O;
-
 /**
  * 
  * @author Zyssk0

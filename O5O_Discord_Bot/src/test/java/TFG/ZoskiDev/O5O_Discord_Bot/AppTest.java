@@ -1,8 +1,8 @@
 package TFG.ZoskiDev.O5O_Discord_Bot;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class AppTest {
     
