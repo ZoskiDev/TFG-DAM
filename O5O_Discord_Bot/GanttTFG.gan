@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2024-05-07" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3300" locale="es_ES">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2024-03-16" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3300" locale="es_ES">
     <description/>
     <view zooming-state="default:3" id="gantt-chart">
         <field id="tpd15" name="Notas" width="20" order="0"/>
@@ -39,7 +39,7 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="1" uid="58d6446e4669483f8ec3f656594588d0" name="22 de Marzo" color="#990099" meeting="false" start="2024-03-22" duration="1" complete="100" thirdDate="2024-03-14" thirdDate-constraint="0" expand="true">
+        <task id="1" uid="58d6446e4669483f8ec3f656594588d0" name="22 de Marzo" color="#990099" meeting="false" start="2024-03-22" duration="1" complete="100" thirdDate="2024-03-14" thirdDate-constraint="0" expand="false">
             <task id="0" uid="dff2d4e656244a9196d3b0b699613dd4" name="Creacion de los repositorios en Github e implementación" shape="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" meeting="false" start="2024-03-22" duration="1" complete="100" thirdDate="2024-03-11" thirdDate-constraint="0" webLink="https%3A%2F%2Fgithub.com%2FZoskiDev%2FTFG-DAM" expand="true">
                 <notes><![CDATA[Creacion del repositorio donde se alojara el TFG e implementacion del mismo en eclipse tanto para Windows como para MacOS
 
@@ -165,7 +165,7 @@ TIEMPO INVERTIDO: 3 HORAS]]></notes>
 TIEMPO INVERTIDO: 1 HORA]]></notes>
             </task>
         </task>
-        <task id="33" uid="b2fe8841394b40a39e492bb1571fc2dd" name="19 de Mayo" meeting="false" start="2024-05-19" duration="1" complete="0" expand="true">
+        <task id="33" uid="b2fe8841394b40a39e492bb1571fc2dd" name="19 de Mayo" meeting="false" start="2024-05-19" duration="1" complete="0" expand="false">
             <task id="35" uid="2a2f828c29f04b67ac1c090871e383dd" name="Comprobaciones finales de bugs" meeting="false" start="2024-05-19" duration="1" complete="0" thirdDate="2024-05-07" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[Comprobacion finales de casos de uso y bugs visuales menores
 
@@ -176,6 +176,11 @@ TIEMPO INVERTIDO: 4 HORAS]]></notes>
 
 TIEMPO INVERTIDO: 2 HORAS
 ]]></notes>
+            </task>
+            <task id="36" uid="1397fc82db474d4fba47a1c9e7b5bae3" name="Funcion dinamica de servidor" meeting="false" start="2024-05-19" duration="1" complete="0" thirdDate="2024-05-07" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Funciones dinamicas con hilos para tratar casos de union o abandono de servidores en tiempo de ejecucion
+
+TIEMPO INVERTIDO: 4 HORAS]]></notes>
             </task>
         </task>
     </tasks>

@@ -6,7 +6,7 @@
 
   <groupId>TFG.ZoskiDev</groupId>
   <artifactId>O5O_Discord_Bot</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>O5O_Discord_Bot</name>

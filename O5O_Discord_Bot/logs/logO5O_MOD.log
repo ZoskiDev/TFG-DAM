@@ -137,3 +137,19 @@ psoe psoe psoe psoe
 [INFO ] 19-05-2024 18:55:20 [Javacord - Central ExecutorService - 4] BadWordsFilter - Mensaje con badWord detectado y eliminado, causante:zyssk0 contenido: voy a hacer una funcion que se dedique a mandar la foto de Morti cuando reciba mas de cinco psoe en un minuto
 [INFO ] 19-05-2024 18:56:10 [Javacord - Central ExecutorService - 8] BadWordsFilter - Mensaje con badWord detectado y eliminado, causante:r4f4_749 contenido: psoe
 [INFO ] 19-05-2024 18:57:17 [Javacord - Central ExecutorService - 4] BadWordsFilter - Mensaje con badWord detectado y eliminado, causante:r4f4_749 contenido: psoe %m{nolookups}
+[INFO ] 27-05-2024 18:49:08 [Javacord - Central ExecutorService - 3] SlashCommandsManager - Invocado borrar bloque: Invocador: zyssk0 cantidad a borrar: 1 en canal: 1221484317067448342
+[INFO ] 27-05-2024 18:49:24 [Javacord - Central ExecutorService - 1] SlashCommandsManager - Invocado borrar bloque: Invocador: zyssk0 cantidad a borrar: 1 en canal: 1221484317067448342
+[FATAL] 27-05-2024 18:49:36 [Javacord - Central ExecutorService - 3] SlashCommandsManager - ABORTANDO SLASH: la cantidad de minutos no ha sido valida
+[INFO ] 27-05-2024 18:49:36 [Javacord - Central ExecutorService - 2] SlashCommandsManager - Invocado borrar bloque: Invocador: zyssk0 cantidad a borrar: 0 en canal: 1221484317067448342
+[INFO ] 27-05-2024 18:50:46 [Javacord - Central ExecutorService - 3] SlashCommandsManager - Invocado borrar bloque: Invocador: zyssk0 cantidad a borrar: 1 en canal: 1221484317067448342
+[FATAL] 27-05-2024 18:50:50 [Javacord - Central ExecutorService - 2] SlashCommandsManager - ABORTANDO SLASH: la cantidad de minutos no ha sido valida
+[INFO ] 27-05-2024 18:50:51 [Javacord - Central ExecutorService - 4] SlashCommandsManager - Invocado borrar bloque: Invocador: zyssk0 cantidad a borrar: 0 en canal: 1221484317067448342
+[FATAL] 27-05-2024 18:51:06 [Javacord - Central ExecutorService - 1] SlashCommandsManager - ABORTANDO SLASH: la cantidad de minutos no ha sido valida
+[INFO ] 27-05-2024 18:51:07 [Javacord - Central ExecutorService - 2] SlashCommandsManager - Invocado borrar bloque: Invocador: zyssk0 cantidad a borrar: -1 en canal: 1221484317067448342
+[INFO ] 27-05-2024 18:53:58 [Javacord - Central ExecutorService - 3] SlashCommandsManager - Invocado borrar bloque: Invocador: zyssk0 cantidad a borrar: -1 en canal: 1221484317067448342
+[INFO ] 27-05-2024 18:57:30 [Javacord - Central ExecutorService - 3] SlashCommandsManager - Invocado borrar bloque: Invocador: zyssk0 cantidad a borrar: -1 en canal: 1221484317067448342
+[FATAL] 27-05-2024 18:58:37 [Javacord - Central ExecutorService - 1] SlashCommandsManager - ABORTANDO SLASH: la cantidad de minutos no ha sido valida
+[FATAL] 27-05-2024 18:58:50 [Javacord - Central ExecutorService - 2] SlashCommandsManager - ABORTANDO SLASH: la cantidad de minutos no ha sido valida
+[FATAL] 27-05-2024 18:58:54 [Javacord - Central ExecutorService - 1] SlashCommandsManager - ABORTANDO SLASH: la cantidad de minutos no ha sido valida
+[INFO ] 27-05-2024 18:59:10 [Javacord - Central ExecutorService - 3] SlashCommandsManager - Invocado borrar bloque: Invocador: zyssk0 cantidad a borrar: 1 en canal: 1221484317067448342
+[INFO ] 27-05-2024 19:00:08 [Javacord - Central ExecutorService - 3] SlashCommandsManager - Invocado borrar bloque: Invocador: zyssk0 cantidad a borrar: 3 en canal: 1221484317067448342

@@ -103,6 +103,7 @@ public class O5O {
 			                                SlashCommandOption.create(SlashCommandOptionType.LONG, "cantidad", "cantidad de mensajes que borrar desde el ultimo", true),
 			                                SlashCommandOption.create(SlashCommandOptionType.CHANNEL, "canal", "canal especifico que borrar los mensajes", false)		                                
 			        ))))
+				.setDefaultEnabledForPermissions(PermissionType.ADMINISTRATOR, PermissionType.MODERATE_MEMBERS)
 				);
 		builders.add(
 				SlashCommand.with("conseguirpfp", "consigue la pfp del usuario que desees",

@@ -94,13 +94,15 @@ public class SlashCommandsManager {
 		
 		else if(command.getCommandName().equals("borrarbloque")) {
 			if(command.getServer().get().canYouManage()) {
-				Long cantidadBorrar = command.getArgumentLongValueByIndex(0).orElse((long)-3);
+				int cantidadBorrar = Math.toIntExact(command.getArgumentLongValueByIndex(0).get());
 				TextChannel canalBorrar = null;
-				if(!(cantidadBorrar > 0 && cantidadBorrar < Integer.MAX_VALUE)) {
+				if((cantidadBorrar <= 0 || cantidadBorrar > Integer.MAX_VALUE)) {
 					logger.fatal("ABORTANDO SLASH: la cantidad de minutos no ha sido valida");
 					command.createImmediateResponder().setContent("Debes introducir una cantidad de mensajes a borrar valida!")
 					.setFlags(MessageFlag.EPHEMERAL).respond();
+					return;
 				}
+				//chequea si el argumento indicando canal existe, si no selecciona el canal donde se ha invocado
 				try {		
 					if(command.getArgumentChannelValueByIndex(1).isPresent())
 						canalBorrar = api.getTextChannelById(command.getArgumentChannelValueByIndex(1).get().getId()).get();
@@ -110,25 +112,24 @@ public class SlashCommandsManager {
 					logger.fatal("ABORTANDO: ERROR FATAL A LA HORA DE CARGAR LOS ARGUMENTOS DEL SLASH COMMAND: " + e.toString());
 					return;
 				}
+				
 				MessageSet mset = null;
 				try {
-					mset = canalBorrar.getMessages((int) (cantidadBorrar + 1)).get();
+					mset = canalBorrar.getMessages(cantidadBorrar).get();
 				} catch (Exception e) {
 					logger.fatal("ABORTANDO: ERROR FATAL A LA HORA DE RECUPERAR LOS MENSAJES DEL SERVIDOR: " + e.toString());
 					return;
 				}
 				String idCanal = canalBorrar.getIdAsString();
 				String cantBorrados = "" + cantidadBorrar;
-				canalBorrar.deleteMessages(mset).thenAccept(message -> {
-					command.createImmediateResponder()
-					.setContent(cantBorrados + " Mensajes eliminados correctamente")
-					.setFlags(MessageFlag.EPHEMERAL)
-					.respond();
+				
+				command.createImmediateResponder().setContent("Borrando " + cantBorrados + " mensaje/s, esto puede tomar unos segundos").setFlags(MessageFlag.EPHEMERAL).respond();
+				
+				canalBorrar.deleteMessages(mset);
 					logger.info("Invocado borrar bloque:" +
 							" Invocador: " + command.getUser().getName() + 
 							" cantidad a borrar: " + cantBorrados +
 							" en canal: " + idCanal);
-				});
 			}
 			else {
 				logger.error("Error a la hora de borrar mensajes en: " + command.getServer().get() + " Permisos insuficientes");
