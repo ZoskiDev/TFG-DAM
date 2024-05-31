@@ -11,7 +11,7 @@ import org.javacord.api.listener.server.member.ServerMemberJoinListener;
 /**
  * @author Zyssk0
  * 
- * Clase que representa el behaviour del bot a la hora de que se una un usuario a un servidor
+ * Clase que representa el comportamiento del bot a la hora de que se una un usuario a un servidor
  * */
 public class ListenerUnionUsuario implements ServerMemberJoinListener{
 

@@ -16,7 +16,7 @@ import org.javacord.api.interaction.SlashCommandInteraction;
 
 /**
  * @author Zyssk0
- * Clase SlashCommandsManager, esta clase representa el comportamiento (behaviour) que debe tomar cada slash al ser invocado mediante
+ * Clase SlashCommandsManager, esta clase representa el comportamiento que debe tomar cada slash al ser invocado mediante
  * el cliente de discord
  * @see O5O.java para los Slash Existentes
  * */
