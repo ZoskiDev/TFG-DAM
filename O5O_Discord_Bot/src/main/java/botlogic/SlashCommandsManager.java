@@ -32,16 +32,16 @@ public class SlashCommandsManager {
 	 * 
 	 * @param DiscordApi como api del bot que debe ejecutar el programa
 	 * */
-	public static void slashManager(SlashCommandInteraction command, DiscordApi api) {
+	public static void slashManager(SlashCommandInteraction comando, DiscordApi api) {
 		
 		
-		if(command.getCommandName().equals("servidor")) {
+		if(comando.getCommandName().equals("servidor")) {
 			Optional <Server>	servidorComandoEjecutado = null;
 			Optional <User>		usuarioArgumento = null;
 			try {
-				if(command.getServer().isPresent() && command.getArgumentByIndex(0).isPresent()) {
-					servidorComandoEjecutado = command.getServer();
-					usuarioArgumento = command.getArgumentUserValueByIndex(0);
+				if(comando.getServer().isPresent() && comando.getArgumentByIndex(0).isPresent()) {
+					servidorComandoEjecutado = comando.getServer();
+					usuarioArgumento = comando.getArgumentUserValueByIndex(0);
 				}
 				else {
 					logger.fatal("ABORTANDO: ERROR FATAL A LA HORA DE CARGAR EL SERVIDOR Y LOS ARGUMENTOS DEL SLASH COMMAND:");
@@ -54,37 +54,37 @@ public class SlashCommandsManager {
 			
 			
 			
-			switch (command.getFullCommandName()){
+			switch (comando.getFullCommandName()){
 			case "servidor moderacion silenciar":
 				//Implementar en una clase que sea exclusivamente comandos de moderacion??
 				User usuarioTimeout = usuarioArgumento.get();
 				final String nombreUsuario = usuarioTimeout.getName();
-				Long minutos = command.getArgumentLongValueByIndex(1).orElse((long)-3);
+				Long minutos = comando.getArgumentLongValueByIndex(1).orElse((long)-3);
 				Server servidorTimeout = servidorComandoEjecutado.get();
 				
 				//Si podemos silenciar al usuario y si la cantidad es valida:
 				if(servidorTimeout.canYouTimeoutUser(usuarioTimeout) && (minutos > 0 && minutos < 10081)){
 					
-					usuarioTimeout.timeout(servidorTimeout, Duration.ofMinutes(command.getArgumentLongValueByIndex(1).get()))
+					usuarioTimeout.timeout(servidorTimeout, Duration.ofMinutes(comando.getArgumentLongValueByIndex(1).get()))
 					.thenAccept(message -> {
 						String argumento = "";
-						Optional <String> optional_argumento = command.getArgumentStringRepresentationValueByIndex(2);
+						Optional <String> optionalArgumento = comando.getArgumentStringRepresentationValueByIndex(2);
 						
-						if(optional_argumento.isPresent()) 
-							argumento = " Razon: " + optional_argumento.get() + ".";
+						if(optionalArgumento.isPresent()) 
+							argumento = " Razon: " + optionalArgumento.get() + ".";
 						
-						command.createImmediateResponder()
+						comando.createImmediateResponder()
 						.setContent("Usuario: " + nombreUsuario + " ha sido silenciad@ correctamente" + argumento)
 						.respond();
 						logger.info("Invocado canal moderacion silenciar:" +
-								" Invocador: " + command.getUser().getName() + 
+								" Invocador: " + comando.getUser().getName() + 
 								" Usado contra: " + nombreUsuario + 
-								" tiempo: " + command.getArgumentLongValueByIndex(1).get() + " minutos");
+								" tiempo: " + comando.getArgumentLongValueByIndex(1).get() + " minutos");
 					});
 				}
 				else {
 					logger.error("El usuario: " + usuarioTimeout.getName() + " no puede ser silenciado");
-					command.createImmediateResponder().setContent("Error! no se ha podido silenciar al usuario: " + usuarioTimeout.getName() + " es probable que no posea los permisos necesarios en este servidor o se hayan introducido mal los minutos")
+					comando.createImmediateResponder().setContent("Error! no se ha podido silenciar al usuario: " + usuarioTimeout.getName() + " es probable que no posea los permisos necesarios en este servidor o se hayan introducido mal los minutos")
 					.setFlags(MessageFlag.EPHEMERAL).respond();
 				}
 				break;
@@ -92,22 +92,22 @@ public class SlashCommandsManager {
 		}
 		
 		
-		else if(command.getCommandName().equals("borrarbloque")) {
-			if(command.getServer().get().canYouManage()) {
-				int cantidadBorrar = Math.toIntExact(command.getArgumentLongValueByIndex(0).get());
+		else if(comando.getCommandName().equals("borrarbloque")) {
+			if(comando.getServer().get().canYouManage()) {
+				int cantidadBorrar = Math.toIntExact(comando.getArgumentLongValueByIndex(0).get());
 				TextChannel canalBorrar = null;
 				if((cantidadBorrar <= 0 || cantidadBorrar > Integer.MAX_VALUE)) {
 					logger.fatal("ABORTANDO SLASH: la cantidad de minutos no ha sido valida");
-					command.createImmediateResponder().setContent("Debes introducir una cantidad de mensajes a borrar valida!")
+					comando.createImmediateResponder().setContent("Debes introducir una cantidad de mensajes a borrar valida!")
 					.setFlags(MessageFlag.EPHEMERAL).respond();
 					return;
 				}
 				//chequea si el argumento indicando canal existe, si no selecciona el canal donde se ha invocado
 				try {		
-					if(command.getArgumentChannelValueByIndex(1).isPresent())
-						canalBorrar = api.getTextChannelById(command.getArgumentChannelValueByIndex(1).get().getId()).get();
+					if(comando.getArgumentChannelValueByIndex(1).isPresent())
+						canalBorrar = api.getTextChannelById(comando.getArgumentChannelValueByIndex(1).get().getId()).get();
 					else
-						canalBorrar = command.getChannel().get();
+						canalBorrar = comando.getChannel().get();
 				}catch(Exception e) {
 					logger.fatal("ABORTANDO: ERROR FATAL A LA HORA DE CARGAR LOS ARGUMENTOS DEL SLASH COMMAND: " + e.toString());
 					return;
@@ -123,17 +123,17 @@ public class SlashCommandsManager {
 				String idCanal = canalBorrar.getIdAsString();
 				String cantBorrados = "" + cantidadBorrar;
 				
-				command.createImmediateResponder().setContent("Borrando " + cantBorrados + " mensaje/s, esto puede tomar unos segundos").setFlags(MessageFlag.EPHEMERAL).respond();
+				comando.createImmediateResponder().setContent("Borrando " + cantBorrados + " mensaje/s, esto puede tomar unos segundos").setFlags(MessageFlag.EPHEMERAL).respond();
 				
 				canalBorrar.deleteMessages(mset);
 					logger.info("Invocado borrar bloque:" +
-							" Invocador: " + command.getUser().getName() + 
+							" Invocador: " + comando.getUser().getName() + 
 							" cantidad a borrar: " + cantBorrados +
 							" en canal: " + idCanal);
 			}
 			else {
-				logger.error("Error a la hora de borrar mensajes en: " + command.getServer().get() + " Permisos insuficientes");
-				command.createImmediateResponder().setContent("Error! no se pueden borrar mensajes, es probable que no posea los permisos necesarios en este servidor")
+				logger.error("Error a la hora de borrar mensajes en: " + comando.getServer().get() + " Permisos insuficientes");
+				comando.createImmediateResponder().setContent("Error! no se pueden borrar mensajes, es probable que no posea los permisos necesarios en este servidor")
 				.setFlags(MessageFlag.EPHEMERAL).respond();
 			}
 			
@@ -141,27 +141,27 @@ public class SlashCommandsManager {
 		
 		
 		
-		else if(command.getCommandName().equals("conseguirpfp")) {
-			if (command.getArgumentUserValueByIndex(0).isEmpty()) {
+		else if(comando.getCommandName().equals("conseguirpfp")) {
+			if (comando.getArgumentUserValueByIndex(0).isEmpty()) {
 				System.out.println("NO HA ENCONTRADO USUARIO");
-				command.createImmediateResponder().setContent("No se ha proporcionado usuario objetivo")
+				comando.createImmediateResponder().setContent("No se ha proporcionado usuario objetivo")
 				.setFlags(MessageFlag.EPHEMERAL)
 				.respond();
 			}
 			else {
-				User usuarioObjetivo = command.getArgumentUserValueByIndex(0).get();
+				User usuarioObjetivo = comando.getArgumentUserValueByIndex(0).get();
 				
-				String toSend = command.getUser().getName() + " aqui tienes la imagen de: " + usuarioObjetivo.getName();
+				String mensajeRespuesta = comando.getUser().getName() + " aqui tienes la imagen de: " + usuarioObjetivo.getName();
 				
 				//TODO que no sea una bazofia de respond inmediato y se quede pensando hasta que tengas bien mandada la imagen
-				command.createImmediateResponder().setContent("Recibido, en breves tendras la imagen!").setFlags(MessageFlag.EPHEMERAL).respond();
+				comando.createImmediateResponder().setContent("Recibido, en breves tendras la imagen!").setFlags(MessageFlag.EPHEMERAL).respond();
 					EmbedBuilder emb = new EmbedBuilder()
-					.setTitle(toSend)
+					.setTitle(mensajeRespuesta)
 					.setImage(usuarioObjetivo.getAvatar());
-				command.getChannel().get().sendMessage(emb);
+				comando.getChannel().get().sendMessage(emb);
 				
 				logger.info("Invocado conseguirPFP:" +
-						" Invocador: " + command.getUser().getName() + 
+						" Invocador: " + comando.getUser().getName() + 
 						" Objetivo " + usuarioObjetivo.getName());
 			}
 		}

@@ -34,7 +34,7 @@ public class O5O {
 	private GraphicalUserInterfaceLogic logicaHija;
 
 	private  DiscordApi api;
-	private Server servidor_seleccionado;
+	private Server servidorSeleccionado;
 	
 	/**
 	 * Constructor de la clase O5O, este constructor no recibe ningun parametro de entrada
@@ -120,10 +120,10 @@ public class O5O {
 		);
 	}
 	public void startStartUpListeners() {
-		ServerOnJoinOrLeaveListener srvrjoinleave = new ServerOnJoinOrLeaveListener(logicaHija);
-		api.addServerMemberJoinListener(new UserJoinListenerManager());
-		api.addServerMemberLeaveListener(new UserLeaveListenerManager());
-		api.addMessageCreateListener(new BadWordsFilter());
+		ListenerUnionAbandonoServidor srvrjoinleave = new ListenerUnionAbandonoServidor(logicaHija);
+		api.addServerMemberJoinListener(new ListenerUnionUsuario());
+		api.addServerMemberLeaveListener(new ListenerAbandonoUsuario());
+		api.addMessageCreateListener(new FiltroBadWords());
 		api.addServerJoinListener(srvrjoinleave);
 		api.addServerLeaveListener(srvrjoinleave);
 	}
@@ -141,8 +141,8 @@ public class O5O {
 	 * @return true si hay servidor seleccionado
 	 * @return false si no hay un servidor seleccionado
 	 * */
-	public boolean isServerSetted() {
-		if (getServidor_seleccionado() != null)
+	public boolean isServidorSeleccionado() {
+		if (getServidorSeleccionado() != null)
 			return true;
 		return false;
 	}
@@ -153,8 +153,8 @@ public class O5O {
 	 * @return el servidor seleccionado para trabajar
 	 * @return null si no hay un servidor seleccionado
 	 * */
-	public Server getServidor_seleccionado() {
-		return servidor_seleccionado;
+	public Server getServidorSeleccionado() {
+		return servidorSeleccionado;
 	}
 
 	/**
@@ -162,8 +162,8 @@ public class O5O {
 	 * 
 	 * @param Server servidor a trabajar 
 	 * */
-	public void setServidor_seleccionado(Server servidor_seleccionado) {
-			this.servidor_seleccionado = servidor_seleccionado;
+	public void setServidorSeleccionado(Server servidor_seleccionado) {
+			this.servidorSeleccionado = servidor_seleccionado;
 	}
 	
 	/**
@@ -173,14 +173,14 @@ public class O5O {
 	 * @param ID del canal al cual mandar el mensaje
 	 * 
 	 * */
-	public void sendMessage(String toSend, String channelID) {
-		api.getTextChannelById(channelID).ifPresentOrElse(x -> {
+	public void enviarMensaje(String mensaje, String idCanal) {
+		api.getTextChannelById(idCanal).ifPresentOrElse(x -> {
 				new MessageBuilder()
-				.setContent(toSend)
-				.send(api.getTextChannelById(channelID).get());
-				logger.info("mensaje correctamente enviado a canal con ID:" + channelID + " contenido: " + toSend);
+				.setContent(mensaje)
+				.send(api.getTextChannelById(idCanal).get());
+				logger.info("mensaje correctamente enviado a canal con ID:" + idCanal + " contenido: " + mensaje);
 				}
-				,() ->  logger.error("Error a la hora de enviar mensaje, canal: " + channelID + " no encontrado"));
+				,() ->  logger.error("Error a la hora de enviar mensaje, canal: " + idCanal + " no encontrado"));
 		
 		
 	}

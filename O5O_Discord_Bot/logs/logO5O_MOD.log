@@ -153,3 +153,4 @@ psoe psoe psoe psoe
 [FATAL] 27-05-2024 18:58:54 [Javacord - Central ExecutorService - 1] SlashCommandsManager - ABORTANDO SLASH: la cantidad de minutos no ha sido valida
 [INFO ] 27-05-2024 18:59:10 [Javacord - Central ExecutorService - 3] SlashCommandsManager - Invocado borrar bloque: Invocador: zyssk0 cantidad a borrar: 1 en canal: 1221484317067448342
 [INFO ] 27-05-2024 19:00:08 [Javacord - Central ExecutorService - 3] SlashCommandsManager - Invocado borrar bloque: Invocador: zyssk0 cantidad a borrar: 3 en canal: 1221484317067448342
+[INFO ] 27-05-2024 19:18:42 [Javacord - Central ExecutorService - 1] SlashCommandsManager - Invocado borrar bloque: Invocador: zyssk0 cantidad a borrar: 1 en canal: 1221484317067448342

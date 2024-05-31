@@ -28,15 +28,15 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 	private GraphicalUserInterfaceLogic logica;
 	private Color 						colorVerde;
 	private Color 						colorRojo;
-	private JLabel						lbl_status;
-	private static JLabel						lbl_server;
+	private JLabel						lbl_estado;
+	private static JLabel				lbl_servidor;
 	
 	/**
 	 * popUpErrorServer
 	 * 
 	 * metodo utilizado para mostrar un JOptionPane indicando un error especifico de error a la hora de seleccionar un servidor
 	 * */
-	private void popUpErrorServer() {
+	private void popUpErrorServidor() {
 		JOptionPane.showMessageDialog(null, "Selecciona un servidor antes", "Error servidor", JOptionPane.ERROR_MESSAGE);
 	}
 	/**
@@ -46,14 +46,14 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 	 * e imprime en pantalla el estado del mismo
 	 * 
 	 * */
-	private void checkBotStatus() {
+	private void estadoBot() {
 		if(logica.isBotReady()) {
-			lbl_status.setText(lbl_status.getText() + " ONLINE");
-			lbl_status.setForeground(colorVerde);
+			lbl_estado.setText(lbl_estado.getText() + " ONLINE");
+			lbl_estado.setForeground(colorVerde);
 		}
 		else {
-			lbl_status.setText(lbl_status.getText() + " ERROR...");
-			lbl_status.setForeground(colorRojo);
+			lbl_estado.setText(lbl_estado.getText() + " ERROR...");
+			lbl_estado.setForeground(colorRojo);
 		}
 	}
 	private void setup() {
@@ -92,47 +92,47 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 			getContentPane().add(pan_south, BorderLayout.SOUTH);
 			pan_south.setLayout(new GridLayout(1, 2));
 			
-			lbl_status = new JLabel("Status:");
-			lbl_status.setVerticalAlignment(SwingConstants.TOP);
-			lbl_status.setHorizontalAlignment(SwingConstants.LEFT);
-			pan_south.add(lbl_status);
+			lbl_estado = new JLabel("Estatus:");
+			lbl_estado.setVerticalAlignment(SwingConstants.TOP);
+			lbl_estado.setHorizontalAlignment(SwingConstants.LEFT);
+			pan_south.add(lbl_estado);
 			
-			lbl_server = new JLabel("Servidor Seleccionado:");
-			lbl_server.setHorizontalAlignment(SwingConstants.LEFT);
-			pan_south.add(lbl_server);
+			lbl_servidor = new JLabel("Servidor Seleccionado:");
+			lbl_servidor.setHorizontalAlignment(SwingConstants.LEFT);
+			pan_south.add(lbl_servidor);
 			
 		// Fin de sector de panel sur
 			
 		//Inicio sector listeners
 			mntm_seleccionar_servidor.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					logica.setActiveServer();
-					if(logica.getActiveServerName() == null && !logica.isServerActive()) {
+					logica.setServidorSeleccionado();
+					if(logica.getNombreServidorSeleccionado() == null && !logica.isServidorActivo()) {
 						JOptionPane.showMessageDialog(null, "Error, no se ha seleccionado ningun servidor", "Error servidor", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
-						lbl_server.setText("Servidor Seleccionado: " + logica.getActiveServerName());
+						lbl_servidor.setText("Servidor Seleccionado: " + logica.getNombreServidorSeleccionado());
 				}
 			});
 			
 			mntm_mandar_mensaje_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if(!logica.isServerActive()) {
-						popUpErrorServer();
+					if(!logica.isServidorActivo()) {
+						popUpErrorServidor();
 						return;
 					}
-					logica.startMessagesGUI();	
+					logica.iniciarGUIMensajes();	
 				}
 			});
 			mntm_conseguirinvitacion.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					logica.getInviteLink();
+					logica.getlinkInvitacion();
 				}
 			});
 			mntm_badWords.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if(!logica.isServerActive()) {
-						popUpErrorServer();
+					if(!logica.isServidorActivo()) {
+						popUpErrorServidor();
 						return;
 						}
 					logica.startBadWordsGUI();
@@ -149,14 +149,14 @@ public class GraphicalUserInterfaceO5O extends JFrame{
 		//Apartado de la gui
 		setTitle("O5O G.U.I");
 		setup();
-		checkBotStatus();
+		estadoBot();
 		pack();
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 	public static void setVoidToServidorSeleccionado() {
-		lbl_server.setText("Servidor Seleccionado: ");
+		lbl_servidor.setText("Servidor Seleccionado: ");
 	}
 
 }

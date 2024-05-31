@@ -9,9 +9,9 @@ import org.javacord.api.listener.server.member.ServerMemberLeaveListener;
  * 
  * Clase que representa el behaviour del bot a la hora de que un usuario abandone un servidor
  * */
-public class UserLeaveListenerManager implements ServerMemberLeaveListener{
+public class ListenerAbandonoUsuario implements ServerMemberLeaveListener{
 
-	private static Logger logger = LogManager.getLogger(UserLeaveListenerManager.class);
+	private static Logger logger = LogManager.getLogger(ListenerAbandonoUsuario.class);
 	
 	@Override
 	public void onServerMemberLeave(ServerMemberLeaveEvent event) {
