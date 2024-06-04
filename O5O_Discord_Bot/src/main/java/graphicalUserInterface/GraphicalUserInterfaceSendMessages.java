@@ -102,7 +102,7 @@ public class GraphicalUserInterfaceSendMessages extends JDialog {
 		
 			btn_sendMessage.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					logicaPadre.sendMessageToBot(textArea.getText(), id_channels.get(comboBox_SelCanal.getSelectedItem()));
+					logicaPadre.mandarMensajeBot(textArea.getText(), id_channels.get(comboBox_SelCanal.getSelectedItem()));
 					clearText();
 				}
 			});

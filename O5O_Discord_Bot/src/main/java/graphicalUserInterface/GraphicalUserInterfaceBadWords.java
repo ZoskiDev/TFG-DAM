@@ -34,8 +34,8 @@ public class GraphicalUserInterfaceBadWords extends JDialog {
 	private JTextArea	textArea;
 	private JLabel		lbl_servidor;
 	private GraphicalUserInterfaceLogic logicaPadre;
-	private String		serverName = "";
-	private File		fileTXT;
+	private String		nombreServidor = "";
+	private File		archivoTXT;
 	
 	/**
 	 * Create the frame.
@@ -101,8 +101,8 @@ public class GraphicalUserInterfaceBadWords extends JDialog {
 			});
 			btn_uploadBadWords.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if(!serverName.isBlank())
-						writeToFile(fileTXT);
+					if(!nombreServidor.isBlank())
+						writeToFile(archivoTXT);
 						setVisible(false);
 						clearText();
 					}
@@ -123,34 +123,34 @@ public class GraphicalUserInterfaceBadWords extends JDialog {
 		//Fin listeners
 	}
 	/**
-	 * Metodo loadBadWords
+	 * Metodo cargarBadWords
 	 * 
 	 * este metodo se encarga de cargar en la interfaz grafica el archivo de texto que se envia desde la GUI padre
 	 * 
 	 * @param archivo (de texto plano) a cargar
 	 * 
 	 * */
-	public void loadBadWords(File toShow) {
-		if(logicaPadre.isServerActive()) { 
-			serverName = logicaPadre.getActiveServerName();
-			lbl_servidor.setText("Mostrando BadWords de:  " + serverName);
+	public void cargarBadWords(File archivoCarga) {
+		if(logicaPadre.isServidorActivo()) { 
+			nombreServidor = logicaPadre.getNombreServidorSeleccionado();
+			lbl_servidor.setText("Mostrando BadWords de:  " + nombreServidor);
 		}
-		fileTXT = toShow;
-		fillTextArea(fileTXT);
+		archivoTXT = archivoCarga;
+		escribirTextArea(archivoTXT);
 	}
 	/**
-	 * Metodo fillTextArea
+	 * Metodo escribirTextArea
 	 * 
 	 * este metodo se encarga de mostrar el contenido del archivo de texto plano en la interfaz
 	 * 
-	 * @param toFill siendo el archivo a mostrar en la interfaz grafica
+	 * @param archivoCarga siendo el archivo a mostrar en la interfaz grafica
 	 * 
 	 * @exception FileNotFoundException si el archivo se ha enviado de manera equivoca
 	 * 
 	 * @exception IOException si el archivo no se puede leer (no es un txt)
 	 * */
-	private void fillTextArea(File toFill) {
-		try(BufferedReader reader = new BufferedReader(new FileReader(toFill))){
+	private void escribirTextArea(File archivoCarga) {
+		try(BufferedReader reader = new BufferedReader(new FileReader(archivoCarga))){
 			String linea;
 			while((linea = reader.readLine()) != null) {
 				textArea.append(linea + "\n");

@@ -26,9 +26,9 @@ import botlogic.O5O;
  * */
 public class GraphicalUserInterfaceLogic {
 	private static Logger logger = LogManager.getLogger(GraphicalUserInterfaceLogic.class);
-	private GraphicalUserInterfaceSelectServer select_server;
-	private GraphicalUserInterfaceSendMessages send_messages;
-	private GraphicalUserInterfaceBadWords bad_words;
+	private GraphicalUserInterfaceSelectServer seleccionarServidor;
+	private GraphicalUserInterfaceSendMessages mandarMensajes;
+	private GraphicalUserInterfaceBadWords badWords;
 	private O5O bot;
 	
 	/**
@@ -38,10 +38,10 @@ public class GraphicalUserInterfaceLogic {
 	 * */
 	public GraphicalUserInterfaceLogic() {
 		bot = new O5O(this);
-		select_server = new GraphicalUserInterfaceSelectServer(bot.getApi().getServers(), this);
-		send_messages = new GraphicalUserInterfaceSendMessages(this);
-		bad_words = new GraphicalUserInterfaceBadWords(this);
-		createPathBadWords();
+		seleccionarServidor = new GraphicalUserInterfaceSelectServer(bot.getApi().getServers(), this);
+		mandarMensajes = new GraphicalUserInterfaceSendMessages(this);
+		badWords = new GraphicalUserInterfaceBadWords(this);
+		crearRutaBadWords();
 	}
 	/**
 	 * Metodo para comprobar si el bot ha inicializado correctamente
@@ -67,24 +67,24 @@ public class GraphicalUserInterfaceLogic {
 		return bot.getApi();
 	}
 	/**
-	 * Metodo setActiveServer
+	 * Metodo setServidorSeleccionado
 	 * 
 	 * este metodo se encarga de lanzar la interfaz GraphicalUserInterfaceSelectServer
 	 * 
 	 * */
-	public void setActiveServer() {
+	public void setServidorSeleccionado() {
 		try{
-			select_server.setVisible(true);
-			bot.setServidor_seleccionado(select_server.getServidor_seleccionado().get());
-			select_server.getServidor_seleccionado().ifPresent(bot::setServidor_seleccionado);
+			seleccionarServidor.setVisible(true);
+			bot.setServidorSeleccionado(seleccionarServidor.getServidorSeleccionado().get());
+			seleccionarServidor.getServidorSeleccionado().ifPresent(bot::setServidorSeleccionado);
 		}catch(Exception e) {			
-			if(!isServerActive())
-				bot.setServidor_seleccionado(null);
+			if(!isServidorActivo())
+				bot.setServidorSeleccionado(null);
 		}
 	}
 	
 	/**
-	 * Metodo getActiveServer
+	 * Metodo getNombreServidorSeleccionado
 	 * 
 	 * este metodo se encarga de recibir el nombre del servidor donde se esta trabajando actualmente
 	 * 
@@ -92,11 +92,11 @@ public class GraphicalUserInterfaceLogic {
 	 * 
 	 * @return null si no existe un servidor en el que se este trabajando.
 	 * */
-	public String getActiveServerName() {
+	public String getNombreServidorSeleccionado() {
 		String serverName = "";
 		try {
-			if(bot.getServidor_seleccionado() != null)
-				serverName = bot.getServidor_seleccionado().getName();
+			if(bot.getServidorSeleccionado() != null)
+				serverName = bot.getServidorSeleccionado().getName();
 		}catch(NullPointerException e) {
 			logger.error("no existe valor de servidor seleccionado, retornando null");
 			return null;
@@ -105,46 +105,48 @@ public class GraphicalUserInterfaceLogic {
 	}
 	
 	/**
-	 * Metodo para indicar si hay un servidor activo para trabajar
+	 * Metodo isServidorActivo
+	 * 
+	 * metodo utilizado para indicar si hay un servidor activo para trabajar
 	 * 
 	 * @return true si lo hay
 	 * 
 	 * @return false si no lo hay
 	 * */
-	public boolean isServerActive() {
-		return bot.isServerSetted();
+	public boolean isServidorActivo() {
+		return bot.isServidorSeleccionado();
 	}
 	
 	/**
-	 * startMessagesGUI
+	 * iniciarGUIMensajes
 	 * 
 	 * metodo encargado de cargar los canales de un servidor y lanzar la clase GraphicalUserInterfaceSendMessages
 	 * */
-	public void startMessagesGUI() {
-			send_messages.fillJComboBox(bot.getServidor_seleccionado());
-			send_messages.setVisible(true);
+	public void iniciarGUIMensajes() {
+			mandarMensajes.fillJComboBox(bot.getServidorSeleccionado());
+			mandarMensajes.setVisible(true);
 		}
 	/**
-	 * sendMessageToBot
+	 * mandarMensajeBot
 	 * 
 	 * metodo encargado de dar la señal al bot para mandar un mensaje
 	 * 
-	 * @param message como mensaje a mandar
+	 * @param mensaje como mensaje a mandar
 	 * 
-	 * @param channelID como ID del canal al que mandar el mensaje
+	 * @param idCanal como ID del canal al que mandar el mensaje
 	 * */
-	public void sendMessageToBot(String message, String channelID) {
-		bot.sendMessage(message, channelID);
+	public void mandarMensajeBot(String mensaje, String idCanal) {
+		bot.enviarMensaje(mensaje, idCanal);
 	}
 	/**
-	 * getInviteLink
+	 * getlinkInvitacion
 	 * 
 	 * este metodo se encarga de dar una invitacion CON TODOS LOS PERMISOS
 	 * 
 	 * sus salidas son tanto por consola como por navegador
 	 * 
 	 * */
-	public void getInviteLink() {
+	public void getlinkInvitacion() {
 		String link = bot.getApi().createBotInvite(Permissions.fromBitmask(888));
 		System.out.println("link de invitacion de O5O: " + link);
 		try {
@@ -167,7 +169,7 @@ public class GraphicalUserInterfaceLogic {
 	 * en caso de que exista, lo manda a la interfaz GraphicalUserInterfaceBadWords
 	 * */
 	public void startBadWordsGUI() {
-		String txtName = getActiveServerName() + "badWords.txt";
+		String txtName = getNombreServidorSeleccionado() + "badWords.txt";
 		File badWordstxt = new File("badWords/" + txtName);
 		if(!badWordstxt.exists()) {
 			try {
@@ -177,23 +179,23 @@ public class GraphicalUserInterfaceLogic {
 				e.printStackTrace();
 			}
 		}
-		bad_words.loadBadWords(badWordstxt);
-		bad_words.setVisible(true);
+		badWords.cargarBadWords(badWordstxt);
+		badWords.setVisible(true);
 	}
-	private void createPathBadWords() {
-		File badWordsPath = new File  ("badWords/");
-		if(!badWordsPath.exists())
-			badWordsPath.mkdir();
+	private void crearRutaBadWords() {
+		File rutaBadWords = new File  ("badWords/");
+		if(!rutaBadWords.exists())
+			rutaBadWords.mkdir();
 	}
-	public void removeServerFromList(String toRemove) {
-		select_server.removeServer(toRemove);
+	public void quitarServidorLista(String servidorEliminar) {
+		seleccionarServidor.eliminarServidor(servidorEliminar);
 		//Si el servidor que se ha ido es el seleccionado en el momento
-		if(bot.getServidor_seleccionado().getName().equalsIgnoreCase(toRemove)) {
-			bot.setServidor_seleccionado(null);
+		if(bot.getServidorSeleccionado().getName().equalsIgnoreCase(servidorEliminar)) {
+			bot.setServidorSeleccionado(null);
 			GraphicalUserInterfaceO5O.setVoidToServidorSeleccionado();
 		}
 	}
-	public void addServerFromList(Server toAdd) {
-		select_server.addServer(toAdd);
+	public void aniadirServidorLista(Server servidorAniadir) {
+		seleccionarServidor.aniadirServidor(servidorAniadir);
 	}
 }

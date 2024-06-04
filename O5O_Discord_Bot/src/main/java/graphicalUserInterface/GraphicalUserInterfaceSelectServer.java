@@ -30,9 +30,9 @@ public class GraphicalUserInterfaceSelectServer extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JComboBox<String> comboBox_servidor = new JComboBox<String>();
-	private Map<String, String> id_servers;
-	private Optional<Server> servidor_seleccionado = null;
+	private JComboBox<String> comboBoxServidor = new JComboBox<String>();
+	private Map<String, String> idServidores;
+	private Optional<Server> servidorSeleccionado = null;
 	private GraphicalUserInterfaceLogic logicaPadre;
 	/**
 	 * Create the dialog.
@@ -40,7 +40,7 @@ public class GraphicalUserInterfaceSelectServer extends JDialog {
 	public GraphicalUserInterfaceSelectServer(Set <Server> servidores, GraphicalUserInterfaceLogic logica) {
 		setTitle("Seleccion servidor");
 		logicaPadre = logica;
-		id_servers = new HashMap<String, String>();
+		idServidores = new HashMap<String, String>();
 		fillComboBox(servidores);
 		setup();
 	}
@@ -52,21 +52,21 @@ public class GraphicalUserInterfaceSelectServer extends JDialog {
 		Iterator <Server> servidores = s.iterator();
 		while(servidores.hasNext()) {
 			Server serv = servidores.next();
-			id_servers.put(serv.getName(), serv.getIdAsString());
-			comboBox_servidor.addItem(serv.getName());
+			idServidores.put(serv.getName(), serv.getIdAsString());
+			comboBoxServidor.addItem(serv.getName());
 		}
 		
 		
 	}
 	
-	public void removeServer(String toRemove) {
-		comboBox_servidor.removeItem(toRemove);
-		id_servers.remove(toRemove);
+	public void eliminarServidor(String servidorEliminar) {
+		comboBoxServidor.removeItem(servidorEliminar);
+		idServidores.remove(servidorEliminar);
 	}
 	
-	public void addServer(Server toAdd) {
-		id_servers.put(toAdd.getName(), toAdd.getIdAsString());
-		comboBox_servidor.addItem(toAdd.getName());
+	public void aniadirServidor(Server servidorAniadir) {
+		idServidores.put(servidorAniadir.getName(), servidorAniadir.getIdAsString());
+		comboBoxServidor.addItem(servidorAniadir.getName());
 	}
 	private void setup() {
 		setModal(true);
@@ -76,50 +76,49 @@ public class GraphicalUserInterfaceSelectServer extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
-			JLabel lbl_Select_Server = new JLabel("Selecciona servidor:");
-			lbl_Select_Server.setFont(new Font("Tahoma", Font.PLAIN, 24));
-			contentPanel.add(lbl_Select_Server);
+			JLabel lbl_SelectServer = new JLabel("Selecciona servidor:");
+			lbl_SelectServer.setFont(new Font("Tahoma", Font.PLAIN, 24));
+			contentPanel.add(lbl_SelectServer);
 		}
 		{
-			comboBox_servidor.setEditable(true);
-			comboBox_servidor.setMaximumRowCount(50);
-			contentPanel.add(comboBox_servidor);
+			comboBoxServidor.setEditable(true);
+			comboBoxServidor.setMaximumRowCount(50);
+			contentPanel.add(comboBoxServidor);
 		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.addActionListener(new ActionListener() {
+				JButton btnOK = new JButton("OK");
+				btnOK.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(comboBox_servidor != null)
-							setServidor_seleccionado(logicaPadre.getBotApi().getServerById(id_servers.get(comboBox_servidor.getSelectedItem())));
+						if(comboBoxServidor != null)
+							setServidorSeleccionado(logicaPadre.getBotApi().getServerById(idServidores.get(comboBoxServidor.getSelectedItem())));
 							setVisible(false);
 					}
 				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				btnOK.setActionCommand("OK");
+				buttonPane.add(btnOK);
+				getRootPane().setDefaultButton(btnOK);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.addActionListener(new ActionListener() {
+				JButton btnCancelar = new JButton("Cancelar");
+				btnCancelar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						setServidor_seleccionado(null);
+						setServidorSeleccionado(null);
 						setVisible(false);
 					}
 				});
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				buttonPane.add(btnCancelar);
 			}
 		}
 	}
-	public Optional<Server> getServidor_seleccionado() {
-		return servidor_seleccionado.or(() -> Optional.empty());
+	public Optional<Server> getServidorSeleccionado() {
+		return servidorSeleccionado.or(() -> Optional.empty());
 	}
-	public void setServidor_seleccionado(Optional<Server> servidor_seleccionado) {
-		this.servidor_seleccionado = servidor_seleccionado;
+	public void setServidorSeleccionado(Optional<Server> servidor_seleccionado) {
+		this.servidorSeleccionado = servidor_seleccionado;
 	}
 
 }

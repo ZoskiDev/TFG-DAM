@@ -14,15 +14,15 @@ import org.apache.logging.log4j.Logger;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
-public class BadWordsFilter implements MessageCreateListener{
+public class FiltroBadWords implements MessageCreateListener{
 
 	private File badWordsTXT;
-	private static Logger logger = LogManager.getLogger(BadWordsFilter.class);
+	private static Logger logger = LogManager.getLogger(FiltroBadWords.class);
 
-	public BadWordsFilter() {
+	public FiltroBadWords() {
 		super();
 	}
-	private boolean checkIfFilterExists(MessageCreateEvent event) {
+	private boolean compruebaSiExisteArchivo(MessageCreateEvent event) {
 		
 		event.getServer().ifPresent(x  ->
 		badWordsTXT = new File("badWords/" + event.getServer().get().getName() + "badWords.txt"));
@@ -30,19 +30,19 @@ public class BadWordsFilter implements MessageCreateListener{
 			return false;
 		return true;
 	}
-	private void checkBadWords(File blackList, MessageCreateEvent event) {
+	private void compruebaBadWords(File listaNegra, MessageCreateEvent event) {
 		Pattern pat;
 		Matcher mat;
 		String message = event.getMessageContent();
 		
-		try(BufferedReader reader = new BufferedReader(new FileReader(blackList))){
+		try(BufferedReader lector = new BufferedReader(new FileReader(listaNegra))){
 			String linea;
-			while((linea = reader.readLine()) != null) {
+			while((linea = lector.readLine()) != null) {
 				linea.replaceAll("\\r?\\n", "");
 				pat = Pattern.compile(linea, Pattern.CASE_INSENSITIVE);
 				mat = pat.matcher(message);
 				if(mat.find()) {
-					deleteAndInformUser(event);
+					borraEInforma(event);
 					return;
 				}				
 			}
@@ -54,7 +54,7 @@ public class BadWordsFilter implements MessageCreateListener{
 			e.printStackTrace();
 		}
 	}
-	private void deleteAndInformUser(MessageCreateEvent event) {
+	private void borraEInforma(MessageCreateEvent event) {
 		event.getMessage().delete();
 		logger.info("Mensaje con badWord detectado y eliminado, causante:" + event.getMessageAuthor().getName() + " contenido: " + event.getMessageContent());
 		try {
@@ -71,9 +71,9 @@ public class BadWordsFilter implements MessageCreateListener{
 	}
 	@Override
 	public void onMessageCreate(MessageCreateEvent event) {
-		if(!checkIfFilterExists(event))
+		if(!compruebaSiExisteArchivo(event))
 			return;
-		checkBadWords(badWordsTXT, event);
+		compruebaBadWords(badWordsTXT, event);
 		
 	}
 

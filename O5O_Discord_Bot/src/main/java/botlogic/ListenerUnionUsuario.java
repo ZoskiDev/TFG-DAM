@@ -11,11 +11,11 @@ import org.javacord.api.listener.server.member.ServerMemberJoinListener;
 /**
  * @author Zyssk0
  * 
- * Clase que representa el behaviour del bot a la hora de que se una un usuario a un servidor
+ * Clase que representa el comportamiento del bot a la hora de que se una un usuario a un servidor
  * */
-public class UserJoinListenerManager implements ServerMemberJoinListener{
+public class ListenerUnionUsuario implements ServerMemberJoinListener{
 
-	private static Logger logger = LogManager.getLogger(UserJoinListenerManager.class);
+	private static Logger logger = LogManager.getLogger(ListenerUnionUsuario.class);
 
 	@Override
 	public void onServerMemberJoin(ServerMemberJoinEvent event){
